@@ -1,0 +1,4 @@
+{
+  "main": "../dist/sanitizers/index.js",
+  "types": "../dist/sanitizers/index.d.ts"
+}

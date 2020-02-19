@@ -1,0 +1,149 @@
+.consignment-bill-modal
+  display: flex
+  flex-direction: column
+  width: 50%
+  font-style: normal
+
+  & h2
+    font-weight: bold
+    font-size: 18px
+    line-height: 22px
+    color: #0C2340
+    margin-bottom: 30px
+
+  & .companies-container
+    display: flex
+    justify-content: space-around
+    margin-bottom: 15px
+
+    & .company-info
+      font-size: 14px
+      line-height: 17px
+      width: 33%
+
+      & h4
+        margin-bottom: 5px
+        color: #82879B
+
+  & .data-row
+    display: flex
+    justify-content: space-between
+    border-radius: 8px
+    margin-bottom: 25px
+
+    & .info
+      font-size: 14px
+      line-height: 17px
+      width: 33%
+
+      & h4
+        margin-bottom: 5px
+
+    & .key
+      font-size: 14px
+      line-height: 17px
+      color: #82879B
+      margin-bottom: 5px
+      font-weight: bold
+
+    & .value
+      font-size: 14px
+      line-height: 17px
+      font-weight: normal
+      color: #000000
+
+  & .orders
+    height: 300px
+    overflow-y: scroll
+    border-top: solid 1px #E1E5EF
+    border-bottom: solid 1px #E1E5EF
+    padding: 20px 0
+    margin-bottom: 30px
+
+    & .modal-expand
+      margin-bottom: 5px
+      padding: 20px 20px 0 20px
+      border-radius: 8px
+      background: rgba(225, 229, 239, 0.3)
+
+      & .key
+        font-size: 14px
+        line-height: 17px
+        color: #82879B
+        margin-bottom: 5px
+
+      & .value
+        font-size: 18px
+        line-height: 22px
+        font-weight: bold
+        color: #0C2340
+
+      & .arrow-box
+        display: flex
+        width: 32px
+        height: 32px
+        margin-top: 7px
+        background: rgba(48, 127, 226, 0.1)
+        border-radius: 5px
+        justify-content: center
+        align-items: center
+
+      & .arrow
+        width: 10px
+        height: 6px
+        transform: rotate(180deg)
+        transition: transform 0.4s linear
+
+    & .expanded-header
+      display: flex
+      justify-content: space-between
+      cursor: pointer
+
+    & .expanded-content
+      max-height: 0
+      overflow-y: hidden
+      transition: max-height 0.2s ease-out
+      padding-top: 20px
+
+      & h1
+        margin-bottom: 20px
+
+      & .summary p
+        margin-top: 20px
+
+    & .modal-table
+      & .th:nth-of-type(n+3)
+        text-align: end
+        padding-right: 10px
+
+
+
+  & .summary-container
+    width: 100%
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+
+    & .summary p
+      font-size: 14px
+      line-height: 17px
+      color: #82879B
+      text-align: end
+
+    & .summary h1
+      font-weight: bold
+      font-size: 24px
+      line-height: 29px
+      color: #0C2340
+
+
+.expander
+  display: none
+  visibility: hidden
+
+.expander:checked ~ .expanded-content
+  max-height: 1000px
+  transition: max-height 0.4s ease-in
+
+.expander:checked + .expanded-header .arrow
+  transform: rotate(0deg)

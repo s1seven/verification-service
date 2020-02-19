@@ -1,0 +1,55 @@
+.additional-info
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  max-height: 0
+  overflow-y: hidden
+  transition: max-height 0.2s linear
+
+.additional-info.show
+  max-height: 1500px
+
+.additional-info table
+  width: 40%
+
+.additional-info .td
+  background: unset
+  padding: 8px 8px
+  border: 1px solid #0C2340
+  border-radius: 0
+
+.additional-info th
+  width: 2em
+  position: relative
+  font-size: 20px
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+
+.additional-info th div
+  transform-origin: 0 50%
+  transform: rotate(-90deg)
+  white-space: nowrap
+  display: block
+  position: absolute
+  left: 50%
+  bottom: 30%
+
+.additional-info td:first-of-type
+  width: 40%
+  text-align: right
+
+.additional-info td:last-of-type
+  text-align: left
+
+.additional-info tr.colored-info-metadata
+  background: #F6F8FB
+
+.bcdb-link
+  margin-bottom: 10px
+  color: #307FE2
+  font-weight: 700
+  font-size: 16px
+  line-height: 19px
+

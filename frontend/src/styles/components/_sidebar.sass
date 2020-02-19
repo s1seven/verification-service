@@ -1,0 +1,175 @@
+.sidebar
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  max-width: 196px
+  width: 100%
+  min-height: 100vh
+  padding-bottom: 70px
+  background: #fff
+
+.sidebar-header
+  display: flex
+  justify-content: space-between
+  align-items: flex-end
+  padding: 15px
+  border-bottom: 1px solid #E1E5EF
+
+.sidebar-user-initials
+  margin-bottom: 6px
+
+.sidebar-account-name
+  font-weight: 700
+  font-size: 16px
+  line-height: 19px
+  color: #0C2340
+
+.sidebar-account-text
+  font-size: 14px
+  line-height: 17px
+  color: #82879B
+
+.sidebar-account-btn
+  margin-bottom: 10px
+
+.sidebar-content
+  padding: 45px 15px 15px
+
+.nav-list-item + .nav-list-item
+  margin-top: 5px
+
+.nav-link
+  position: relative
+  display: block
+  padding: 15px 15px 15px 55px
+  border-radius: 4px
+  font-weight: 700
+  font-size: 14px
+  line-height: 17px
+  color: #82879B
+
+.nav-link.active
+  color: #307FE2
+  background: rgba(48, 127, 226, 0.1)
+
+.nav-link::before
+  content: ''
+  position: absolute
+  top: 50%
+  left: 21px
+  transform: translateY(-50%)
+
+.nav-link.active::after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 3px
+  background: #307FE2
+  border-radius: 54px
+
+.nav-link-lab::before
+  width: 15px
+  height: 20px
+  background: url('./../assets/lab.svg') center no-repeat
+
+.nav-link-lab.active::before
+  background: url('./../assets/labActive.svg') center no-repeat
+
+.nav-link-certificates-received::before
+  width: 20px
+  height: 20px
+  background: url('./../assets/certificateReceived.svg') center no-repeat
+
+.nav-link-certificates-received.active::before
+  background: url('./../assets/certificateReceivedActive.svg') center no-repeat
+
+.nav-link-certificates-issued::before
+  width: 20px
+  height: 20px
+  background: url('./../assets/certificateIssued.svg') center no-repeat
+
+.nav-link-certificates-issued.active::before
+  background: url('./../assets/certificateIssuedActive.svg') center no-repeat
+
+.nav-link-transactions::before
+  width: 20px
+  height: 20px
+  background: url('./../assets/transaction.svg') center no-repeat
+
+.nav-link-transactions.active::before
+  background: url('./../assets/transactionActive.svg') center no-repeat
+
+.nav-link-shipping::before
+  width: 20px
+  height: 17px
+  background: url('./../assets/shipping.svg') center no-repeat
+
+.nav-link-shipping.active::before
+  background: url('./../assets/shippingActive.svg') center no-repeat
+
+.nav-link-inspection::before
+  width: 15px
+  height: 20px
+  background: url('./../assets/inspection.svg') center no-repeat
+
+.nav-link-inspection.active::before
+  background: url('./../assets/inspectionActive.svg') center no-repeat
+
+.nav-link-goods-received::before
+  width: 20px
+  height: 17px
+  background: url('./../assets/goodsReceived.svg') center no-repeat
+
+.nav-link-goods-received.active::before
+  background: url('./../assets/goodsReceivedActive.svg') center no-repeat
+
+.sidebar-footer
+  position: absolute
+  bottom: 16px
+  left: 15px
+
+.company-text
+  margin-bottom: 10px
+  font-size: 14px
+  line-height: 17px
+  color: #82879B
+
+.company-logo
+  width: 53px
+  height: 25px
+
+.dropdown
+  position: relative
+  display: inline-block
+
+.dropdown-content
+  display: none
+  position: absolute
+  border-radius: 8px
+  background-color: #ffffff
+  min-width: 160px
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+  margin: 0
+  z-index: 1
+  .dropdown:hover > &
+    display: block
+
+
+.menu-item
+  padding: 12px 16px
+  display: block
+  border-radius: 8px
+  &:hover
+    background-color: #f6f8fb
+
+.menu-line
+  content: ""
+  top: 0
+  display: block
+  position: relative
+  width: 140px
+  margin: auto
+  border-bottom: 1px solid #e2e2e2

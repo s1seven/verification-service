@@ -1,0 +1,92 @@
+.scrollable-container
+  overflow-x: auto
+
+.table
+  width: 100%
+  border-collapse: separate
+  border-spacing: 0 5px
+  min-width: 850px
+
+.th
+  padding-bottom: 15px
+  font-weight: 600
+  font-size: 14px
+  line-height: 17px
+  color: #0C2340
+  text-align: left
+
+  &.sortable
+    cursor: pointer
+
+  &.sortable h3:after
+    display: inline-block
+    margin-left: 4px
+    content: url('./../assets/sort-solid.svg')
+
+  &.sortable.sorted-ascending h3:after
+    content: url('./../assets/sort-down-solid.svg')
+    transform: matrix(1, 0, 0, -1, 0, 0)
+
+  &.sortable.sorted-descending h3:after
+    content: url('./../assets/sort-down-solid.svg')
+
+.th p
+  margin-top: 2px
+  font-size: 12px
+  line-height: 14px
+  color: #82879B
+  font-weight: 400
+
+.td
+  padding: 11px 0
+  background: rgba(225, 229, 239, 0.5)
+  vertical-align: middle
+  font-size: 14px
+  line-height: 17px
+  color: #0C2340
+
+  &.right-align
+    text-align: end
+
+.td:first-child
+  padding-left: 16px
+  border-top-left-radius: 8px
+  border-bottom-left-radius: 8px
+
+.td:last-child
+  padding-right: 16px
+  border-top-right-radius: 8px
+  border-bottom-right-radius: 8px
+
+div.table-btn
+  display: inline-flex
+  flex-direction: column
+  align-content: center
+  justify-content: center
+
+  & img
+    margin-bottom: 2px
+
+.table-btn
+  width: 32px
+  height: 32px
+  background: rgba(48, 127, 226, 0.1)
+  border-radius: 4px
+  color: #307FE2
+  font-weight: bold
+
+.table-btn-disable
+  opacity: 0.5
+
+* + .table-btn
+  margin-left: 12px
+
+.table-btn > img
+  height: 12px
+
+.table-user-initials
+  margin-right: 8px
+  background: rgba(39, 202, 211, 0.1)
+  border: 1px solid #27CAD3
+  box-sizing: border-box
+  color: #27CAD3

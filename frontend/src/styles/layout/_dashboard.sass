@@ -1,0 +1,115 @@
+.dashboard
+  display: flex
+  flex-direction: column
+  height: 100%
+  padding: 30px
+
+  & > *
+    width: 100%
+
+.dashboard-content
+  width: 100%
+  height: 100%
+  padding: 30px 30px 30px 226px
+
+.box
+  padding: 20px 30px
+  background: #fff
+  box-shadow: 0px 4px 40px #E1E5EF
+  border-radius: 8px
+
+
+.box + .box
+  margin-top: 30px
+
+.box-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 20px
+
+.filtered-table-header
+  min-width: 800px
+
+.transaction-type
+  position: relative
+  padding-right: 14px
+  font-weight: 700
+  font-size: 14px
+  line-height: 17px
+  display: inline-block
+
+.transaction-type-outgoing
+  color: #E40046
+
+.transaction-type::after
+  content: ''
+  position: absolute
+  top: 50%
+  right: 0
+  transform: translateY(-50%)
+  width: 12px
+  height: 12px
+  background-size: contain
+
+.transaction-type-incoming
+  color: #38B717
+
+.transaction-type-incoming::after
+  background: url('./../assets/incoming.svg') center no-repeat
+  background-size: contain
+
+.transaction-type-outgoing::after
+  background: url('./../assets/outgoing.svg') center no-repeat
+  background-size: contain
+
+.status-success,
+.charge-state
+  position: relative
+  padding-left: 24px
+  font-weight: 700
+  font-size: 14px
+  line-height: 17px
+
+.status-success,
+.charge-state-success
+  color: #38B717
+
+.status-failed,
+.charge-state-failed
+  color: #E40046
+
+.status-success::before,
+.charge-state-success::before
+  content: ''
+  position: absolute
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+  width: 16px
+  height: 16px
+  background: url('./../assets/checkmark.svg') center no-repeat
+  background-size: contain
+
+.status-failed::before,
+.charge-state-failed::before
+  content: ''
+  position: absolute
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+  width: 16px
+  height: 16px
+  background: url('./../assets/failed.svg') center no-repeat
+  background-size: contain
+
+.centered-spinner
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 200px
+
+
+.title
+  font-size: 24px
+  margin-bottom: 50px

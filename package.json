@@ -1,0 +1,23 @@
+{
+  "name": "verification-service",
+  "version": "0.0.1",
+  "repository": "git@github.com:steelbutsmart/verification-service.git",
+  "private": true,
+  "engines": {
+    "node": ">=11",
+    "yarn": ">=1.7"
+  },
+  "workspaces": [
+    "common",
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "yarn wsrun --serial --exclude-missing build ",
+    "test": "yarn wsrun --serial --exclude-missing test",
+    "lint": "yarn wsrun --exclude-missing lint"
+  },
+  "devDependencies": {
+    "wsrun": "^5.0.0"
+  }
+}

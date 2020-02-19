@@ -1,0 +1,56 @@
+{
+  "name": "verification-service-backend",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=11",
+    "yarn": ">=1.7"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "dev:watch": "nodemon --watch 'src/**/*.{js,ts}' --exec 'ts-node -T' src/index.ts",
+    "dev:start": "NODE_ENV=dev BIGCHAINDB_URL=http://localhost:9984/api/v1/ ts-node src/index.ts",
+    "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
+    "test": "TS_NODE_TRANSPILE_ONLY=true mocha",
+    "docker:test:infra": "docker-compose up -d"
+  },
+  "dependencies": {
+    "@restless/restless": "^0.4.2",
+    "@restless/sanitizers": "^0.2.3",
+    "@sendgrid/mail": "^6.5.2",
+    "ajv": "^6.11.0",
+    "bigchaindb-driver": "4.1.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "restless": "^0.0.11",
+    "verification-service-common": "link:../common",
+    "ts-node": "^8.6.2"
+  },
+  "devDependencies": {
+    "@types/ajv": "^1.0.0",
+    "@types/chai": "^4.2.8",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/chai-http": "^4.2.0",
+    "@types/express": "4.17.1",
+    "@types/jsdom": "^12.2.4",
+    "@types/mocha": "^7.0.1",
+    "@types/multer": "^1.4.2",
+    "@types/node": "^13.7.0",
+    "@types/sinon": "^7.5.1",
+    "@types/sinon-chai": "^3.2.3",
+    "babel-loader": "8.0.5",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.8.0",
+    "jsdom": "^16.1.0",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2",
+    "sinon": "^8.1.1",
+    "sinon-chai": "^3.4.0",
+    "start-server-and-test": "^1.10.8",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5"
+  }
+}

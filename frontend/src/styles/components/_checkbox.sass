@@ -1,0 +1,82 @@
+.checkbox-container
+  display: flex
+  flex: 1
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.checkbox
+  position: absolute
+  z-index: -1
+  opacity: 0
+
+.checkbox + .checkbox-label
+  position: relative
+  display: block
+  padding-left: 38px
+  cursor: pointer
+
+.checkbox + .checkbox-label::before
+  content: ''
+  position: absolute
+  top: -4px
+  left: 0
+  width: 28px
+  height: 28px
+  border-radius: 50%
+  background: rgba(12, 35, 64, 0.7)
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: contain
+
+.checkbox-label-secondary
+  font-family: 'Graphik-Medium', sans-serif
+  color: #556470
+  line-height: 21px
+
+.checkbox:checked +.checkbox-label-secondary::before
+  background-image: linear-gradient(135deg, #23BCBA 0%, #45E994 100%)
+
+.checkbox + .checkbox-label-alt
+  padding: 0 48px 0 0
+
+.checkbox-label-alt
+  font-size: 16px
+  color: #2B2B2B
+  text-align: right
+  line-height: 24px
+
+.checkbox + .checkbox-label-alt::before
+  content: ''
+  position: absolute
+  top: 1px
+  right: 0
+  left: auto
+  width: 32px
+  height: 20px
+  border-radius: 13px
+  background: #ffffff
+  transition: .2s
+  border: 1px solid #CACACA
+
+.checkbox + .checkbox-label-alt::after
+  content: ''
+  position: absolute
+  top: 4px
+  right: 15px
+  width: 16px
+  height: 16px
+  border-radius: 50%
+  transition: .2s
+  background: #FFFFFF
+  border: 0 solid rgba(0,0,0,0.04)
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15), 0 3px 1px 0 rgba(0,0,0,0.06)
+
+.checkbox:checked + .checkbox-label-alt:before
+  background: #307FE2
+  border: 1px solid #82879B
+
+.checkbox:checked + .checkbox-label-alt:after
+  right: 2px
+

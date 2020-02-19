@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.13.0
+        environment:
+          TERM: xterm
+
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build
+      - save_cache:
+          key: sbs-mvp-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/project
+            - ~/.cache
+  lint:
+    docker:
+      - image: circleci/node:11.13.0
+        environment:
+          TERM: xterm
+    steps:
+      - restore_cache:
+          keys:
+            - sbs-mvp-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn lint
+
+  test_backend:
+    docker:
+      - image: circleci/node:11.13.0
+        environment:
+          TERM: xterm
+      - image: bigchaindb/bigchaindb:all-in-one
+    steps:
+      - restore_cache:
+          keys:
+            - sbs-mvp-{{ .Environment.CIRCLE_SHA1 }}
+      - run: cd backend && yarn test
+
+  test_frontend:
+    docker:
+      - image: circleci/node:11.13.0
+        environment:
+          TERM: xterm
+    steps:
+      - restore_cache:
+          keys:
+            - sbs-mvp-{{ .Environment.CIRCLE_SHA1 }}
+      - run: cd frontend && yarn test
+
+workflows:
+  version: 2
+  steel-but-smart-mvp-all:
+    jobs:
+      - build
+      - lint:
+          requires:
+            - build
+      - test_backend:
+          requires:
+            - build
+      - test_frontend:
+          requires:
+            - build
