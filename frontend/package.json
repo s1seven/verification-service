@@ -15,8 +15,8 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "verification-service-common": "link:../common",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "verification-service-common": "link:../common"
   },
   "scripts": {
     "start": "react-scripts start",

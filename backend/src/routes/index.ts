@@ -1,11 +1,11 @@
 import {Router as expressRouter} from 'express';
 import {Services} from '../build';
-import {notarization} from './notarization';
+import {verification} from './verification';
 
-export const router = ({}: Services) => {
+export const router = ({verificationService}: Services) => {
   const router = expressRouter();
 
-  router.use('/notarize', notarization());
+  router.use('/verify', verification(verificationService));
 
   return router;
 };

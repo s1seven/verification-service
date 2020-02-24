@@ -1,6 +1,14 @@
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import 'jest-enzyme';
+import crypto from 'crypto';
+
+(window as any).crypto = {
+  subtle: {
+    digest: (algorithm: 'SHA-256', arrayBuffer: ArrayBuffer) =>
+      crypto.createHash('sha256').update(Buffer.from(arrayBuffer)).digest()
+  }
+};
 
 process.env.REACT_APP_API_URL = 'http://test.com';
 

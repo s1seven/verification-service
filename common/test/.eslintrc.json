@@ -1,9 +1,0 @@
-{
-  "rules": {
-    "no-underscore-dangle": ["error", { "allow": ["_getStatusCode", "_isJSON", "_getData", "_getJSONData"] }],
-    "@typescript-eslint/no-explicit-any": 0
-  },
-  "env": {
-    "mocha": true
-  }
-}
