@@ -1,4 +1,4 @@
-import {UploadResponse} from 'verification-service-common/models';
+import {Verification} from 'verification-service-common/models';
 import {asSanitizerFailures, formatSanitizerError} from 'verification-service-common/sanitizers';
 import {Result, SanitizerFailure} from '@restless/sanitizers';
 
@@ -32,13 +32,7 @@ const safeFetch = async (...args: ArgumentTypes<typeof fetch>) => {
 export class ApiService {
   public constructor(private readonly apiUrl: string) {}
 
-  public async upload(file: File): Promise<UploadResponse> {
-    const form = new FormData();
-    form.append('file', file, file.name);
-
-    return safeFetch(`${this.apiUrl}/notarize`, {
-      method: 'POST',
-      body: form
-    });
+  public async verify(fileHash: string): Promise<Verification> {
+    return safeFetch(`${this.apiUrl}/verify/${fileHash}`);
   }
 }

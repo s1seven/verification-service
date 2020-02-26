@@ -1,12 +1,12 @@
 import {config} from '../config';
 import {ApiService} from './apiService';
 import {createContext} from 'react';
-import {NotarizationService} from './notarizationService';
+import {VerificationService} from './verificationService';
 
 export const setup = () => {
   const apiService = new ApiService(config.apiUrl);
   return {
-    notarizationService: new NotarizationService(apiService)
+    verificationService: new VerificationService(apiService)
   };
 };
 

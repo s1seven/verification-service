@@ -1,10 +1,10 @@
 import React from 'react';
-import {Notarization} from './Notarization';
+import {Verification} from './Verification';
 import {Footer} from './Footer';
 
 export const Dashboard = () => (
   <div className='dashboard'>
-    <Notarization/>
+    <Verification/>
     <Footer/>
   </div>
 );
