@@ -6,7 +6,7 @@ import {makeExampleTransaction} from '../mocks';
 describe('VerificationService', () => {
   const setup = function () {
     const mockBigchain = {
-      findAsset: sinon.stub().resolves([{id: '123', data: {notary: 'SBS Notarized:0x123'}}]),
+      findAsset: sinon.stub().resolves([{id: '123', data: {notarization: 'SBS Notarized:0x123'}}]),
       getTransaction: sinon.stub().callsFake((id) => makeExampleTransaction(id, 'PubKey', ['PubKey'], '10')),
       transactionLink: sinon.stub().returns('http://bigchain.com')
     };

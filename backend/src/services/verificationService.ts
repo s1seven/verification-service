@@ -6,7 +6,7 @@ export class VerificationService {
 
   async validate(hash: string): Promise<Verification> {
     const transactions = await this.bigchainDbWrapper.findAsset(`SBS Notarized:${hash}`);
-    if (transactions.length === 0 || (transactions[0].data as any).notary !== `SBS Notarized:${hash}`) {
+    if (transactions.length === 0 || (transactions[0].data as any).notarization !== `SBS Notarized:${hash}`) {
       return {isVerified: false};
     }
     const transaction = await this.bigchainDbWrapper.getTransaction(transactions[0].id);
