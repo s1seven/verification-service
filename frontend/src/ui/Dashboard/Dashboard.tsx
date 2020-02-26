@@ -1,10 +1,10 @@
 import React from 'react';
-import {Verificaiton} from './Verificaiton';
+import {Verification} from './Verification';
 import {Footer} from './Footer';
 
 export const Dashboard = () => (
   <div className='dashboard'>
-    <Verificaiton/>
+    <Verification/>
     <Footer/>
   </div>
 );

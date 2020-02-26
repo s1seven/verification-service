@@ -19,7 +19,7 @@ export class VerificationService {
   private readFile(file: File): Promise<ArrayBuffer> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      const readFile = () => {
+      const readFileCallback = () => {
         const {result} = reader;
         if (result === null) {
           reject(new Error('File read error'));
@@ -30,7 +30,7 @@ export class VerificationService {
         }
       };
 
-      reader.addEventListener('load', readFile);
+      reader.addEventListener('load', readFileCallback);
       reader.readAsArrayBuffer(file);
     });
   }

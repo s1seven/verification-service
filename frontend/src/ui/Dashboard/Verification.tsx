@@ -3,11 +3,11 @@ import {FileUploaderBox} from '../common/FileUploaderBox';
 import {useServices} from '../hooks/useServices';
 import {useSnackbar} from '../hooks/useSnackbar';
 import {Box} from '../common/Box';
-import {Verification} from 'verification-service-common/dist/models';
+import {Verification as VerificationResult} from 'verification-service-common/models';
 
-export const Verificaiton = () => {
+export const Verification = () => {
   const {verificationService} = useServices();
-  const [verification, setVerification] = useState<Verification>();
+  const [verification, setVerification] = useState<VerificationResult>();
   const {show} = useSnackbar();
 
   const onUpload = async (file: File) => {
@@ -33,7 +33,7 @@ export const Verificaiton = () => {
   );
 };
 
-const VerifiedDocument = ({verification}: {verification: Verification}) => {
+const VerifiedDocument = ({verification}: {verification: VerificationResult}) => {
   if (!verification.isVerified) {
     return <p>Verified: <span role='img' aria-label='No'>❌</span></p>;
   }
