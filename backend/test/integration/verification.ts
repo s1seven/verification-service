@@ -20,13 +20,5 @@ describe('Integration Verification', () => {
         isVerified: false
       });
     });
-
-    it('works correctly when hash was notarized', async () => {
-
-    });
-
-    it('throws 400 when no hash was provided', async () => {
-
-    });
   });
 });

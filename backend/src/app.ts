@@ -5,6 +5,8 @@ import {unknownEndpoint} from './middlewares/unknownEndpoint';
 import {errorHandler} from './middlewares/errorHandler';
 import path from 'path';
 import {Config} from './config';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 const FRONTEND_FILES = path.join(__dirname, '../../frontend/build');
 
@@ -12,6 +14,8 @@ export const buildApp = (config: Config) => {
   const services = build(config);
 
   const app = express();
+
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use(express.json());
 
