@@ -61,12 +61,12 @@
   },
   "externalDocs" : {
     "description" : "Notarization API Docs",
-    "url" : "https://sbs-notarization-staging.herokuapp.com/api/docs"
+    "url" : "https://demo.verification.en10204.io/api/docs"
   },
   "tags" : [ {
     "name" : "verify"
   } ],
   "servers" : [ {
-    "url" : "https://sbs-verification-staging.herokuapp.com/api"
+    "url" : "https://demo.verification.en10204.io/api"
   } ]
 }
