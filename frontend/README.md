@@ -1,4 +1,4 @@
-# Steel but Smart MVP - React app
+# en10204.io React App
 ## Available Scripts
 
 In the project directory, you can run:
