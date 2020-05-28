@@ -25,4 +25,6 @@ Can be found at [demo.en10204.io](https://demo.en10204.io).
 ## Further documentation
 Please refer to [documentation.en10204.io](https://documentation.en10204.io).
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fs1seven%2Fverification-service.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fs1seven%2Fverification-service?ref=badge_shield)
+
 
