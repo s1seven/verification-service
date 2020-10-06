@@ -30,7 +30,7 @@ export const Verification = () => {
     <>
       <FileUploaderBox
         hintText='Upload a document to verify it'
-        titleText='SBS Verification Service'
+        titleText='Verification Service'
         onFileUploaded={onUpload}
       />
       <Box className='verification-details'>
