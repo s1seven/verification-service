@@ -9,7 +9,11 @@ export const Footer = () => {
   return (
     <footer>
       <div className='logo'>
-        <p className='logo-text'>Powered by</p>
+        <div>
+          <p className='logo-text'>Powered by
+            <a href='https://en10204.io/' className='en10204-link'> en10204.io</a>
+          </p>
+        </div>
         <img className='logo-image' src={Logo1x} srcSet={Logo2x} alt='logo'/>
       </div>
       <div>
