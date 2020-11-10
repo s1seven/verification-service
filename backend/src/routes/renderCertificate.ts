@@ -15,7 +15,8 @@ export const renderCertificate = () => {
     asyncHandler(
       async (_, {file}) => {
         const certificateHtml = await generateHtml(JSON.parse(file.buffer.toString()));
-        return responseOf({certificateHtml});}
+        return responseOf({certificateHtml});
+      }
     ));
 
   return router;

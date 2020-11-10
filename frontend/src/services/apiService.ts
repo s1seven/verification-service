@@ -34,7 +34,7 @@ interface RenderCertificateResult {
 }
 
 export class ApiService {
-  public constructor(private readonly apiUrl: string) {}
+  public constructor(private readonly apiUrl: string) { }
 
   public async verify(fileHash: string): Promise<Verification> {
     return safeFetch(`${this.apiUrl}/verify/${fileHash}`);
@@ -49,5 +49,4 @@ export class ApiService {
       body: form
     });
   }
-
 }
