@@ -21,4 +21,19 @@ describe('Integration Verification', () => {
       });
     });
   });
+
+  describe('rendering certificate', () => {
+
+    const uploadFile = (field = 'certificate', file = 'test/fixtures/certificate.json') => chai.request(app)
+      .post('/api/renderCertificate')
+      .attach(field, file);
+
+
+    it('renders a valid certificate', async () => {
+      let response = await uploadFile();
+
+      expect(response.status).to.equal(200);
+      expect(response.body.certificateHtml).to.contain('Steel Trading');
+    });
+  })
 });
