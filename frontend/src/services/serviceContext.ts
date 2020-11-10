@@ -3,12 +3,14 @@ import {ApiService} from './apiService';
 import {createContext} from 'react';
 import {VerificationService} from './verificationService';
 import {BigchainService} from './bigchainService';
+import {validateCertificateFile} from './validationService';
 
 export const setup = () => {
   const apiService = new ApiService(config.apiUrl);
   return {
     verificationService: new VerificationService(apiService),
-    bigchainService: new BigchainService(config.bigchaindbUrl)
+    bigchainService: new BigchainService(config.bigchaindbUrl),
+    validateCertificateFile
   };
 };
 

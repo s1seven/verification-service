@@ -4,7 +4,6 @@ import {useServices} from '../hooks/useServices';
 import {useSnackbar} from '../hooks/useSnackbar';
 import {Box} from '../common/Box';
 import {Verification as VerificationResult} from 'verification-service-common/models';
-import {validateCertificateFile} from '../../../src/services/validationService';
 import {Result} from '@restless/sanitizers';
 
 type FileVerification = VerificationResult & {
@@ -12,7 +11,7 @@ type FileVerification = VerificationResult & {
 };
 
 export const Verification = () => {
-  const {verificationService} = useServices();
+  const {verificationService, validateCertificateFile} = useServices();
   const [verification, setVerification] = useState<FileVerification>();
   const {show} = useSnackbar();
 
@@ -20,10 +19,10 @@ export const Verification = () => {
     try {
       const validCertificate = await validateCertificateFile(file);
       if (!Result.isOk(validCertificate)) {
+        setVerification({isVerified: false, fileName: file.name});
         throw new Error(validCertificate.error.toString());
       }
       const result = await verificationService.verify(file);
-      console.log(result);
       setVerification({
         ...result,
         fileName: file.name
