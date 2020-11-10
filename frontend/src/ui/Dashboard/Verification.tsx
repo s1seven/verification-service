@@ -4,6 +4,8 @@ import {useServices} from '../hooks/useServices';
 import {useSnackbar} from '../hooks/useSnackbar';
 import {Box} from '../common/Box';
 import {Verification as VerificationResult} from 'verification-service-common/models';
+import {validateCertificateFile} from '../../../src/services/validationService';
+import {Result} from '@restless/sanitizers';
 
 type FileVerification = VerificationResult & {
   fileName: string;
@@ -16,7 +18,12 @@ export const Verification = () => {
 
   const onUpload = async (file: File) => {
     try {
+      const validCertificate = await validateCertificateFile(file);
+      if (!Result.isOk(validCertificate)) {
+        throw new Error(validCertificate.error.toString());
+      }
       const result = await verificationService.verify(file);
+      console.log(result);
       setVerification({
         ...result,
         fileName: file.name
@@ -40,7 +47,7 @@ export const Verification = () => {
   );
 };
 
-const VerifiedDocument = ({verification}: {verification: FileVerification}) => {
+const VerifiedDocument = ({verification}: { verification: FileVerification }) => {
   if (!verification.isVerified) {
     return <p><span role='img' aria-label='No'>❌</span> {verification.fileName} is not verified</p>;
   }

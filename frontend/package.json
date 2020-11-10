@@ -16,7 +16,9 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "typescript": "^3.7.5",
-    "verification-service-common": "link:../common"
+    "verification-service-common": "link:../common",
+    "@s1seven/schema-tools-validate": "^0.0.6",
+    "lodash.flatten": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

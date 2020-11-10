@@ -1298,12 +1298,28 @@
     lodash.merge "^4.6.2"
     mjml "^4.7.1"
 
+"@s1seven/schema-tools-types@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-types/-/schema-tools-types-0.0.6.tgz#1338989ed919c094ec822b0b1ccf5f506977e581"
+  integrity sha512-K3/i6FV4Fauw4tk90783zrDHhWn/80xHVWb8cvYmYYLp8jjXPMsy0o3LojXUoilKQbAnEOCdH5n2FiKZO1cZ2A==
+
 "@s1seven/schema-tools-types@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-types/-/schema-tools-types-0.0.7.tgz#dce648b1ce125eac2a82d27ac2a67862c797ca3b"
   integrity sha512-K+sLEy/AwG033JZSlJeh+CbCrKxYDHiyiOQB4ewupx4DAnnneBJoktaQ9CVCYJPCS4/v3cWcU9W/m0goUOCWog==
   dependencies:
     "@types/json-schema" "^7.0.6"
+
+"@s1seven/schema-tools-utils@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-utils/-/schema-tools-utils-0.0.6.tgz#c1625afbc60b5070a1272417cf0e472fbc9012b7"
+  integrity sha512-7fTl8eK1XbA5n4RPBd4B1AKst8JMigcicmrlLkwTuYYw+WA0o1lrJ/1OFrYB8ikw9+7HQmsAc70fMZRQjMwsjA==
+  dependencies:
+    "@restless/sanitizers" "^0.2.5"
+    "@s1seven/schema-tools-types" "^0.0.6"
+    ajv "^6.12.6"
+    axios "^0.20.0"
+    node-cache "^5.1.2"
 
 "@s1seven/schema-tools-utils@^0.0.7":
   version "0.0.7"
@@ -1317,6 +1333,17 @@
     axios "^0.20.0"
     node-cache "^5.1.2"
     semver-regex "^3.1.1"
+
+"@s1seven/schema-tools-validate@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-validate/-/schema-tools-validate-0.0.6.tgz#fa03cea62f34d54079a6794d4d85ab27cc0bd340"
+  integrity sha512-di7QO6Phu2khHtWT6ck9e1j1cKci9M9/BkVIp55U9lT9bapcVQDByoepKQygF6Eeqx1fouiIzwA8wSTh52lyIQ==
+  dependencies:
+    "@s1seven/schema-tools-types" "^0.0.6"
+    "@s1seven/schema-tools-utils" "^0.0.6"
+    ajv "^6.12.6"
+    lodash.flatten "^4.4.0"
+    lodash.groupby "^4.6.0"
 
 "@sendgrid/client@^6.5.2":
   version "6.5.2"
@@ -1687,6 +1714,13 @@
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
+
+"@types/lodash.flatten@^4.4.6":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.flatten/-/lodash.flatten-4.4.6.tgz#b74c3267c87e44e603137d4621e8a9396b6551f5"
+  integrity sha512-omCBl4M8EJSmf2DZqh4/zwjgXQpzC7YO/PXTcG8rI9r7xun8CohrHeNx8HZRkqWc61uJfIaZop9MwJEXPVssHw==
+  dependencies:
+    "@types/lodash" "*"
 
 "@types/lodash.get@^4.4.6":
   version "4.4.6"
@@ -2219,6 +2253,16 @@ ajv@^6.11.0:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.11.0.tgz#c3607cbc8ae392d8a5a536f25b21f8e5f3f87fe9"
   integrity sha512-nCprB/0syFYy9fVYU1ox1l2KN8S9I+tziH8D4zdZuLT3N6RMlGSGt5FSTpAiHB/Whv8Qs1cWHma1aMKZyaHRKA==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.4.1"
+    uri-js "^4.2.2"
+
+ajv@^6.12.6:
+  version "6.12.6"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
+  integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
   dependencies:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
@@ -8106,6 +8150,11 @@ lodash.escape@^4.0.1:
   resolved "https://registry.yarnpkg.com/lodash.escape/-/lodash.escape-4.0.1.tgz#c9044690c21e04294beaa517712fded1fa88de98"
   integrity sha1-yQRGkMIeBClL6qUXcS/e0fqI3pg=
 
+lodash.flatten@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
+  integrity sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
+
 lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
@@ -8115,6 +8164,11 @@ lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+
+lodash.groupby@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.groupby/-/lodash.groupby-4.6.0.tgz#0b08a1dcf68397c397855c3239783832df7403d1"
+  integrity sha1-Cwih3PaDl8OXhVwyOXg4Mt90A9E=
 
 lodash.isarguments@^3.0.0:
   version "3.1.0"
