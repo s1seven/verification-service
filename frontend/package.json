@@ -7,18 +7,18 @@
   },
   "dependencies": {
     "@restless/sanitizers": "^0.2.3",
+    "@s1seven/schema-tools-validate": "^0.0.9",
     "@types/jest": "24.0.15",
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.5",
+    "lodash.flatten": "^4.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "typescript": "^3.7.5",
-    "verification-service-common": "link:../common",
-    "@s1seven/schema-tools-validate": "^0.0.6",
-    "lodash.flatten": "^4.4.0"
+    "verification-service-common": "link:../common"
   },
   "scripts": {
     "start": "react-scripts start",

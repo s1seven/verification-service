@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { FileUploaderBox } from '../common/FileUploaderBox';
-import { useServices } from '../hooks/useServices';
-import { useSnackbar } from '../hooks/useSnackbar';
-import { Box } from '../common/Box';
-import { Verification as VerificationResult } from 'verification-service-common/models';
-import { Result } from '@restless/sanitizers';
-import { RenderCertificateResult } from '../../../src/services/apiService';
+import React, {useState} from 'react';
+import {FileUploaderBox} from '../common/FileUploaderBox';
+import {useServices} from '../hooks/useServices';
+import {useSnackbar} from '../hooks/useSnackbar';
+import {Box} from '../common/Box';
+import {Verification as VerificationResult} from 'verification-service-common/models';
+import {Result} from '@restless/sanitizers';
+import {RenderCertificateResult} from '../../../src/services/apiService';
 
 type FileVerification = VerificationResult & {
   fileName: string;
@@ -66,5 +66,5 @@ const VerifiedDocument = ({ verification }: { verification: FileVerification }) 
 };
 
 const RenderedCertificate = ({ renderedHTML }: { renderedHTML: RenderCertificateResult }) => {
-  return <p><span data-rendered-html dangerouslySetInnerHTML={{ __html: renderedHTML as unknown as string}}></span></p>;
+  return <iframe srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>
 };
