@@ -29,7 +29,7 @@ const safeFetch = async (...args: ArgumentTypes<typeof fetch>) => {
   return body;
 };
 
-interface RenderCertificateResult {
+export interface RenderCertificateResult {
   certificateHtml: string;
 }
 

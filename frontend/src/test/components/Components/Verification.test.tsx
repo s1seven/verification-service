@@ -1,28 +1,29 @@
 import React from 'react';
-import {mount, ReactWrapper} from 'enzyme';
-import {Verification} from '../../../ui/Dashboard/Verification';
-import {flushAllPromises} from '../../utils';
-import {ServiceContext} from '../../../services/serviceContext';
-import {SnackbarProvider} from '../../../ui/common/Snackbar/SnackbarProvider';
-import {Result} from '@restless/sanitizers';
+import { mount, ReactWrapper } from 'enzyme';
+import { Verification } from '../../../ui/Dashboard/Verification';
+import { flushAllPromises } from '../../utils';
+import { ServiceContext } from '../../../services/serviceContext';
+import { SnackbarProvider } from '../../../ui/common/Snackbar/SnackbarProvider';
+import { Result } from '@restless/sanitizers';
 import fs from 'fs';
 
 const certificateText = fs.readFileSync(`${__dirname}/../../../../../backend/test/fixtures/certificate.json`).toString();
+const certificateHTML = fs.readFileSync(`${__dirname}/../../../../../backend/test/fixtures/certificate.html`).toString();
 
 
 describe('Verification Component', () => {
   let wrapper: ReactWrapper;
   let input: ReactWrapper;
 
-  const verifiedFile = new File([new Blob(['certificate'], {type: 'application/json'})], 'certificate.json', {type: 'application/json'});
-  const notVerifiedFile = new File([new Blob(['not certificate'], {type: 'application/json'})], 'file.txt', {type: 'application/json'});
+  const verifiedFile = new File([new Blob(['certificate'], { type: 'application/json' })], 'certificate.json', { type: 'application/json' });
+  const notVerifiedFile = new File([new Blob(['not certificate'], { type: 'application/json' })], 'file.txt', { type: 'application/json' });
 
   const simulateFileUpload = async (file: File) => {
     const files: FileList = {
       length: 1,
       item: () => file
     };
-    input.simulate('change', {target: {files}});
+    input.simulate('change', { target: { files } });
     await flushAllPromises();
     wrapper.update();
   };
@@ -33,6 +34,9 @@ describe('Verification Component', () => {
         Result.ok(JSON.parse(certificateText)) : Result.error('error'))),
       verificationService: {
         verify: jest.fn()
+      },
+      renderService: {
+        renderCertificate: jest.fn()
       }
     };
     mockServices.verificationService.verify.mockImplementation((file: File) => (file.name === 'certificate.json' ? {
@@ -46,6 +50,7 @@ describe('Verification Component', () => {
       isVerified: false,
       fileName: 'file.txt'
     }));
+    mockServices.renderService.renderCertificate.mockImplementation((file: File) => (file.name === 'certificate.json' ? certificateHTML : null));
     wrapper = mount(
       <ServiceContext.Provider value={mockServices as any}>
         <SnackbarProvider>
@@ -68,5 +73,13 @@ describe('Verification Component', () => {
     expect(certificateResultParagraphs.at(0).text()).toBe('✅ certificate.json is verified');
     expect(certificateResultParagraphs.at(1).text()).toBe('Creator: ABC12');
     expect(certificateResultParagraphs.at(2).text()).toBe('Timestamp: 3/5/2020, 1:11:38 PM');
+  });
+
+  it('renders html of certificate when it is verified', async () => {
+    await simulateFileUpload(verifiedFile);
+    const commercialTransactionHeader = wrapper.find('[data-rendered-html]');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line no-underscore-dangle
+    expect(commercialTransactionHeader.at(0).props().dangerouslySetInnerHTML!.__html).toBe(certificateHTML);
   });
 });
