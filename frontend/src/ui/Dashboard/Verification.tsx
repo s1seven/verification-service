@@ -12,25 +12,23 @@ type FileVerification = VerificationResult & {
 }
 
 export const Verification = () => {
-  const { verificationService, validateCertificateFile, renderService } = useServices();
+  const {verificationService, renderService, validateCertificateFile} = useServices();
   const [verification, setVerification] = useState<FileVerification>();
   const [renderedHTML, setRenderedHTML] = useState<RenderCertificateResult>();
-  const { show } = useSnackbar();
+  const {show} = useSnackbar();
 
   const onUpload = async (file: File) => {
     try {
-      const validCertificate = await validateCertificateFile(file);
-      if (!Result.isOk(validCertificate)) {
-        setVerification({ isVerified: false, fileName: file.name });
-        throw new Error(validCertificate.error.toString());
-      }
-      const html = await renderService.renderCertificate(file);
-      setRenderedHTML(html);
       const result = await verificationService.verify(file);
       setVerification({
         ...result,
         fileName: file.name
       });
+      const validCertificate = await validateCertificateFile(file);
+      if (Result.isOk(validCertificate)) {
+        const html = await renderService.renderCertificate(file);
+        setRenderedHTML(html);
+      }
     } catch (err) {
       show(err.message);
     }
@@ -51,7 +49,7 @@ export const Verification = () => {
   );
 };
 
-const VerifiedDocument = ({ verification }: { verification: FileVerification }) => {
+const VerifiedDocument = ({verification}: { verification: FileVerification }) => {
   if (!verification.isVerified) {
     return <p><span role='img' aria-label='No'>❌</span> {verification.fileName} is not verified</p>;
   }
@@ -59,12 +57,10 @@ const VerifiedDocument = ({ verification }: { verification: FileVerification }) 
     <>
       <p><span role='img' aria-label='Yes'>✅</span> {verification.fileName} is verified</p>
       <p>Creator: {verification.creator}</p>
-      <p>Timestamp: {new Date(verification.timestamp).toLocaleString('en-UK', { timeZone: 'UTC' })}</p>
+      <p>Timestamp: {new Date(verification.timestamp).toLocaleString('en-UK', {timeZone: 'UTC'})}</p>
       <a className='bcdb-link' href={verification.link} target='_blank' rel='noopener noreferrer'>See transaction</a>
     </>
   );
 };
 
-const RenderedCertificate = ({ renderedHTML }: { renderedHTML: RenderCertificateResult }) => {
-  return <iframe srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>
-};
+const RenderedCertificate = ({renderedHTML}: { renderedHTML: RenderCertificateResult }) => <iframe srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>;

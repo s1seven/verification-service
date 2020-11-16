@@ -4,7 +4,7 @@ import {createContext} from 'react';
 import {VerificationService} from './verificationService';
 import {BigchainService} from './bigchainService';
 import {validateCertificateFile} from './validationService';
-import { RenderService } from './renderService';
+import {RenderService} from './renderService';
 
 export const setup = () => {
   const apiService = new ApiService(config.apiUrl);

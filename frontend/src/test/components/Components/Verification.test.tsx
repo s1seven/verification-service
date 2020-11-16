@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import { Verification } from '../../../ui/Dashboard/Verification';
-import { flushAllPromises } from '../../utils';
-import { ServiceContext } from '../../../services/serviceContext';
-import { SnackbarProvider } from '../../../ui/common/Snackbar/SnackbarProvider';
-import { Result } from '@restless/sanitizers';
+import {mount, ReactWrapper} from 'enzyme';
+import {Verification} from '../../../ui/Dashboard/Verification';
+import {flushAllPromises} from '../../utils';
+import {ServiceContext} from '../../../services/serviceContext';
+import {SnackbarProvider} from '../../../ui/common/Snackbar/SnackbarProvider';
+import {Result} from '@restless/sanitizers';
 import fs from 'fs';
 
 const certificateText = fs.readFileSync(`${__dirname}/../../../../../backend/test/fixtures/certificate.json`).toString();
@@ -15,28 +15,29 @@ describe('Verification Component', () => {
   let wrapper: ReactWrapper;
   let input: ReactWrapper;
 
-  const verifiedFile = new File([new Blob(['certificate'], { type: 'application/json' })], 'certificate.json', { type: 'application/json' });
-  const notVerifiedFile = new File([new Blob(['not certificate'], { type: 'application/json' })], 'file.txt', { type: 'application/json' });
+  const verifiedFile = new File([new Blob(['certificate'], {type: 'application/json'})], 'certificate.json', {type: 'application/json'});
+  const notVerifiedFile = new File([new Blob(['not certificate'], {type: 'application/json'})], 'file.txt', {type: 'application/json'});
+  const notValidCertificate = notVerifiedFile;
 
   const simulateFileUpload = async (file: File) => {
     const files: FileList = {
       length: 1,
       item: () => file
     };
-    input.simulate('change', { target: { files } });
+    input.simulate('change', {target: {files}});
     await flushAllPromises();
     wrapper.update();
   };
 
   beforeEach(() => {
     const mockServices = {
-      validateCertificateFile: jest.fn((file: File) => (file.name === 'certificate.json' ?
-        Result.ok(JSON.parse(certificateText)) : Result.error('error'))),
       verificationService: {
         verify: jest.fn()
       },
+      validateCertificateFile: jest.fn((file: File) => (file.name === 'certificate.json' ?
+        Result.ok(JSON.parse(certificateText)) : Result.error('error'))),
       renderService: {
-        renderCertificate: jest.fn()
+        renderCertificate: jest.fn((file: File) => (file.name === 'certificate.json' ? certificateHTML : null))
       }
     };
     mockServices.verificationService.verify.mockImplementation((file: File) => (file.name === 'certificate.json' ? {
@@ -50,7 +51,6 @@ describe('Verification Component', () => {
       isVerified: false,
       fileName: 'file.txt'
     }));
-    mockServices.renderService.renderCertificate.mockImplementation((file: File) => (file.name === 'certificate.json' ? certificateHTML : null));
     wrapper = mount(
       <ServiceContext.Provider value={mockServices as any}>
         <SnackbarProvider>
@@ -75,11 +75,16 @@ describe('Verification Component', () => {
     expect(certificateResultParagraphs.at(2).text()).toBe('Timestamp: 3/5/2020, 1:11:38 PM');
   });
 
-  it('renders html of certificate when it is verified', async () => {
+  it('renders html if certificate is valid', async () => {
     await simulateFileUpload(verifiedFile);
-    const commercialTransactionHeader = wrapper.find('[data-rendered-html]');
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    // eslint-disable-next-line no-underscore-dangle
-    expect(commercialTransactionHeader.at(0).props().dangerouslySetInnerHTML!.__html).toBe(certificateHTML);
+    console.log(wrapper.find('iframe').props());
+    expect(wrapper.find('RenderedCertificate').exists()).toBeTruthy();
+    expect(wrapper.find('iframe').props().width).toBe('100%');
+    expect(wrapper.find('iframe').props().height).toBe('500px');
+  });
+
+  it('does not render html if certificate is not valid', async () => {
+    await simulateFileUpload(notValidCertificate);
+    expect(wrapper.find('RenderedCertificate').exists()).toBeFalsy();
   });
 });
