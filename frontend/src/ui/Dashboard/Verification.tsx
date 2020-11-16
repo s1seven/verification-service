@@ -63,4 +63,4 @@ const VerifiedDocument = ({verification}: { verification: FileVerification }) =>
   );
 };
 
-const RenderedCertificate = ({renderedHTML}: { renderedHTML: RenderCertificateResult }) => <iframe srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>;
+const RenderedCertificate = ({renderedHTML}: { renderedHTML: RenderCertificateResult }) => <iframe title='Rendered Certificate' srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>;
