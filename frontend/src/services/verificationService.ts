@@ -1,7 +1,7 @@
 import {ApiService} from './apiService';
 
 export class VerificationService {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   async verify(file: File) {
     const hash = await this.calculateHashOfFile(file);

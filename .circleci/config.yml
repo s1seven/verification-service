@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11.13.0
+      - image: circleci/node:12.13.0
         environment:
           TERM: xterm
 
@@ -17,7 +17,7 @@ jobs:
             - ~/.cache
   lint:
     docker:
-      - image: circleci/node:11.13.0
+      - image: circleci/node:12.13.0
         environment:
           TERM: xterm
     steps:
@@ -28,7 +28,7 @@ jobs:
 
   test_backend:
     docker:
-      - image: circleci/node:11.13.0
+      - image: circleci/node:12.13.0
         environment:
           TERM: xterm
       - image: bigchaindb/bigchaindb:all-in-one
@@ -40,7 +40,7 @@ jobs:
 
   test_frontend:
     docker:
-      - image: circleci/node:11.13.0
+      - image: circleci/node:12.13.0
         environment:
           TERM: xterm
     steps:

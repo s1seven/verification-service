@@ -4,14 +4,17 @@ import {useServices} from '../hooks/useServices';
 import {useSnackbar} from '../hooks/useSnackbar';
 import {Box} from '../common/Box';
 import {Verification as VerificationResult} from 'verification-service-common/models';
+import {Result} from '@restless/sanitizers';
+import {RenderCertificateResult} from '../../../src/services/apiService';
 
 type FileVerification = VerificationResult & {
   fileName: string;
-};
+}
 
 export const Verification = () => {
-  const {verificationService} = useServices();
+  const {verificationService, renderService, validateCertificateFile} = useServices();
   const [verification, setVerification] = useState<FileVerification>();
+  const [renderedHTML, setRenderedHTML] = useState<RenderCertificateResult>();
   const {show} = useSnackbar();
 
   const onUpload = async (file: File) => {
@@ -21,6 +24,11 @@ export const Verification = () => {
         ...result,
         fileName: file.name
       });
+      const validCertificate = await validateCertificateFile(file);
+      if (Result.isOk(validCertificate)) {
+        const html = await renderService.renderCertificate(file);
+        setRenderedHTML(html);
+      }
     } catch (err) {
       show(err.message);
     }
@@ -36,11 +44,12 @@ export const Verification = () => {
       <Box className='verification-details'>
         {verification && <VerifiedDocument verification={verification}/>}
       </Box>
+      {renderedHTML && <Box><RenderedCertificate renderedHTML={renderedHTML}/></Box>}
     </>
   );
 };
 
-const VerifiedDocument = ({verification}: {verification: FileVerification}) => {
+const VerifiedDocument = ({verification}: { verification: FileVerification }) => {
   if (!verification.isVerified) {
     return <p><span role='img' aria-label='No'>❌</span> {verification.fileName} is not verified</p>;
   }
@@ -53,3 +62,5 @@ const VerifiedDocument = ({verification}: {verification: FileVerification}) => {
     </>
   );
 };
+
+const RenderedCertificate = ({renderedHTML}: { renderedHTML: RenderCertificateResult }) => <iframe title='Rendered Certificate' srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>;

@@ -4,7 +4,7 @@
   "private": true,
   "main": "dist/index.js",
   "engines": {
-    "node": ">=11",
+    "node": ">=12",
     "yarn": ">=1.7"
   },
   "scripts": {

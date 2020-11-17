@@ -4,5 +4,6 @@
   "target": "esnext",
   "recursive": true,
   "exit": true,
-  "watch-files": ["test"]
+  "watch-files": ["test"],
+  "timeout": 10000
 }

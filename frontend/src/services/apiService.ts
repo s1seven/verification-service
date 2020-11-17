@@ -29,10 +29,24 @@ const safeFetch = async (...args: ArgumentTypes<typeof fetch>) => {
   return body;
 };
 
+export interface RenderCertificateResult {
+  certificateHtml: string;
+}
+
 export class ApiService {
-  public constructor(private readonly apiUrl: string) {}
+  public constructor(private readonly apiUrl: string) { }
 
   public async verify(fileHash: string): Promise<Verification> {
     return safeFetch(`${this.apiUrl}/verify/${fileHash}`);
+  }
+
+  async renderCertificate(file: File): Promise<RenderCertificateResult> {
+    const form = new FormData();
+    form.append('certificate', file, file.name);
+
+    return safeFetch(`${this.apiUrl}/renderCertificate`, {
+      method: 'POST',
+      body: form
+    });
   }
 }

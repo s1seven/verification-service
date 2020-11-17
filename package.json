@@ -4,7 +4,7 @@
   "repository": "git@github.com:steelbutsmart/verification-service.git",
   "private": true,
   "engines": {
-    "node": ">=11",
+    "node": ">=12",
     "yarn": ">=1.7"
   },
   "workspaces": [

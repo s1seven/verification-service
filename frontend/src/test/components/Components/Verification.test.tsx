@@ -4,6 +4,7 @@ import {Verification} from '../../../ui/Dashboard/Verification';
 import {flushAllPromises} from '../../utils';
 import {ServiceContext} from '../../../services/serviceContext';
 import {SnackbarProvider} from '../../../ui/common/Snackbar/SnackbarProvider';
+import {Result} from '@restless/sanitizers';
 
 describe('Verification Component', () => {
   let wrapper: ReactWrapper;
@@ -11,6 +12,7 @@ describe('Verification Component', () => {
 
   const verifiedFile = new File([new Blob(['certificate'], {type: 'application/json'})], 'certificate.json', {type: 'application/json'});
   const notVerifiedFile = new File([new Blob(['not certificate'], {type: 'application/json'})], 'file.txt', {type: 'application/json'});
+  const notValidCertificate = notVerifiedFile;
 
   const simulateFileUpload = async (file: File) => {
     const files: FileList = {
@@ -26,6 +28,11 @@ describe('Verification Component', () => {
     const mockServices = {
       verificationService: {
         verify: jest.fn()
+      },
+      validateCertificateFile: jest.fn((file: File) => (file.name === 'certificate.json' ?
+        Result.ok({}) : Result.error('error'))),
+      renderService: {
+        renderCertificate: jest.fn(() => 'certificateHTML')
       }
     };
     mockServices.verificationService.verify.mockImplementation((file: File) => (file.name === 'certificate.json' ? {
@@ -61,5 +68,17 @@ describe('Verification Component', () => {
     expect(certificateResultParagraphs.at(0).text()).toBe('✅ certificate.json is verified');
     expect(certificateResultParagraphs.at(1).text()).toBe('Creator: ABC12');
     expect(certificateResultParagraphs.at(2).text()).toBe('Timestamp: 3/5/2020, 1:11:38 PM');
+  });
+
+  it('renders html if certificate is valid', async () => {
+    await simulateFileUpload(verifiedFile);
+    expect(wrapper.find('RenderedCertificate').exists()).toBeTruthy();
+    expect(wrapper.find('iframe').props().width).toBe('100%');
+    expect(wrapper.find('iframe').props().height).toBe('500px');
+  });
+
+  it('does not render html if certificate is not valid', async () => {
+    await simulateFileUpload(notValidCertificate);
+    expect(wrapper.find('RenderedCertificate').exists()).toBeFalsy();
   });
 });
