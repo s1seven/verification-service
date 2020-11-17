@@ -5,11 +5,6 @@ import {flushAllPromises} from '../../utils';
 import {ServiceContext} from '../../../services/serviceContext';
 import {SnackbarProvider} from '../../../ui/common/Snackbar/SnackbarProvider';
 import {Result} from '@restless/sanitizers';
-import fs from 'fs';
-
-const certificateText = fs.readFileSync(`${__dirname}/../../../../../backend/test/fixtures/certificate.json`).toString();
-const certificateHTML = fs.readFileSync(`${__dirname}/../../../../../backend/test/fixtures/certificate.html`).toString();
-
 
 describe('Verification Component', () => {
   let wrapper: ReactWrapper;
@@ -35,9 +30,9 @@ describe('Verification Component', () => {
         verify: jest.fn()
       },
       validateCertificateFile: jest.fn((file: File) => (file.name === 'certificate.json' ?
-        Result.ok(JSON.parse(certificateText)) : Result.error('error'))),
+        Result.ok({}) : Result.error('error'))),
       renderService: {
-        renderCertificate: jest.fn((file: File) => (file.name === 'certificate.json' ? certificateHTML : null))
+        renderCertificate: jest.fn(() => 'certificateHTML')
       }
     };
     mockServices.verificationService.verify.mockImplementation((file: File) => (file.name === 'certificate.json' ? {

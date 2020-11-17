@@ -15,6 +15,6 @@ describe('validateCertificateFile', () => {
 
   it('does not validate incorrect certificate', async () => {
     const validationResult = await validateCertificateFile(file('some file')) as { error: any};
-    expect(validationResult.error.message).toEqual('Unexpected token s in JSON at position 0')
+    expect(validationResult.error.message).toEqual('Unexpected token s in JSON at position 0');
   });
 });
