@@ -5,9 +5,9 @@ import flatten from 'lodash.flatten';
 export const validateCertificateFile = async (file: File) => {
   try {
     const certificateInput = await readFileAsString(file);
-    return await validateCertificateInput(JSON.parse(certificateInput), '');
+    return validateCertificateInput(JSON.parse(certificateInput), '');
   } catch (err) {
-    throw new Error(`expected: certificate, path: ""`);
+    return Result.error(err);
   }
 };
 
@@ -22,7 +22,7 @@ const validateCertificateInput = async (value: Record<string, any> | string, pat
       })))
     );
     return Result.error(resultError);
-  };
+  }
   return Result.ok(value);
 };
 

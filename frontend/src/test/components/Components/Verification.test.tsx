@@ -77,7 +77,6 @@ describe('Verification Component', () => {
 
   it('renders html if certificate is valid', async () => {
     await simulateFileUpload(verifiedFile);
-    console.log(wrapper.find('iframe').props());
     expect(wrapper.find('RenderedCertificate').exists()).toBeTruthy();
     expect(wrapper.find('iframe').props().width).toBe('100%');
     expect(wrapper.find('iframe').props().height).toBe('500px');

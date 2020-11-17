@@ -3,8 +3,8 @@ import fs from 'fs';
 import {validateCertificateFile} from '../../services/validationService';
 
 const file = (content: string | Buffer) => new File([content], 'file.txt');
-const certificateFixtureParh = `${__dirname}/../../../../backend/test/fixtures/certificate.json`;
-const certificateText = fs.readFileSync(certificateFixtureParh).toString();
+const certificateFixturePath = `${__dirname}/../../../../backend/test/fixtures/certificate.json`;
+const certificateText = fs.readFileSync(certificateFixturePath).toString();
 
 describe('validateCertificateFile', () => {
   it('validates correct certificate', async () => {
@@ -14,12 +14,7 @@ describe('validateCertificateFile', () => {
   });
 
   it('does not validate incorrect certificate', async () => {
-    let expectedError;
-    try {
-      await validateCertificateFile(file('some file'));
-    } catch (error) {
-      expectedError = error;
-    }
-    expect(expectedError.message).toEqual(`expected: certificate, path: ""`);
+    const validationResult = await validateCertificateFile(file('some file')) as { error: any};
+    expect(validationResult.error.message).toEqual('Unexpected token s in JSON at position 0')
   });
 });
