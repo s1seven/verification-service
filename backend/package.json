@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
-    "start": "node --icu-data-dir=`echo $(./node_modules/.bin/node-full-icu-path)` dist/index.js",
-    "start:no-icu": "node dist/index.js",
+    "start": "node dist/index.js",
+    "start:icu": "node --icu-data-dir=`echo $(./node_modules/.bin/node-full-icu-path)` dist/index.js",
     "dev:watch": "nodemon --watch 'src/**/*.{js,ts}' --exec 'ts-node -T' src/index.ts",
     "dev:start": "NODE_ENV=dev BIGCHAINDB_URL=http://localhost:9984/api/v1/ ts-node src/index.ts",
     "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
