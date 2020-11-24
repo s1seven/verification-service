@@ -9,10 +9,14 @@ import {RenderCertificateResult} from '../../../src/services/apiService';
 
 type FileVerification = VerificationResult & {
   fileName: string;
-}
+};
 
 export const Verification = () => {
-  const {verificationService, renderService, validateCertificateFile} = useServices();
+  const {
+    verificationService,
+    renderService,
+    validateCertificateFile
+  } = useServices();
   const [verification, setVerification] = useState<FileVerification>();
   const [renderedHTML, setRenderedHTML] = useState<RenderCertificateResult>();
   const {show} = useSnackbar();
@@ -44,23 +48,76 @@ export const Verification = () => {
       <Box className='verification-details'>
         {verification && <VerifiedDocument verification={verification}/>}
       </Box>
-      {renderedHTML && <Box><RenderedCertificate renderedHTML={renderedHTML}/></Box>}
+      {renderedHTML && (
+        <Box>
+          <RenderedCertificate
+            renderedHTML={renderedHTML}
+            verification={verification}
+          />
+        </Box>
+      )}
     </>
   );
 };
 
-const VerifiedDocument = ({verification}: { verification: FileVerification }) => {
+const VerifiedDocument = ({
+  verification
+}: {
+  verification: FileVerification;
+}) => {
   if (!verification.isVerified) {
-    return <p><span role='img' aria-label='No'>❌</span> {verification.fileName} is not verified</p>;
+    return (
+      <p>
+        <span role='img' aria-label='No'>
+          ❌
+        </span>{' '}
+        {verification.fileName} is not verified
+      </p>
+    );
   }
   return (
     <>
-      <p><span role='img' aria-label='Yes'>✅</span> {verification.fileName} is verified</p>
+      <p>
+        <span role='img' aria-label='Yes'>
+          ✅
+        </span>{' '}
+        {verification.fileName} is verified
+      </p>
       <p>Creator: {verification.creator}</p>
-      <p>Timestamp: {new Date(verification.timestamp).toLocaleString('en-UK', {timeZone: 'UTC'})}</p>
-      <a className='bcdb-link' href={verification.link} target='_blank' rel='noopener noreferrer'>See transaction</a>
+      <p>
+        Timestamp:{' '}
+        {new Date(verification.timestamp).toLocaleString('en-UK', {
+          timeZone: 'UTC'
+        })}
+      </p>
+      <a
+        className='bcdb-link'
+        href={verification.link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        See transaction
+      </a>
     </>
   );
 };
 
-const RenderedCertificate = ({renderedHTML}: { renderedHTML: RenderCertificateResult }) => <iframe title='Rendered Certificate' srcDoc={renderedHTML.certificateHtml} width='100%' height='500px'/>;
+const RenderedCertificate = ({
+  renderedHTML,
+  verification
+}: {
+  renderedHTML: RenderCertificateResult;
+  verification: FileVerification | undefined;
+}) => {
+  if (verification?.isVerified) {
+    return (
+      <iframe
+        title='Rendered Certificate'
+        srcDoc={renderedHTML.certificateHtml}
+        width='100%'
+        height='500px'
+      />
+    );
+  }
+  return (<p></p>);
+};
