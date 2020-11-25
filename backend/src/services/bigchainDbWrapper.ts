@@ -47,13 +47,7 @@ export class BigchainDbWrapper {
   }
 
   public async findAsset(query: string): Promise<{ data: unknown; id: string }[]> {
-    /* eslint-disable no-underscore-dangle */
-    return this.connection._req(this.connection.getApiUrls('assets'), {
-      query: {
-        search: query,
-        limit: 1
-      }
-    });
+    return this.connection.searchAssets(query);
   }
 
   public async getTransaction<T = unknown>(transactionId: string): Promise<BigchainDbTransaction<T>> {
