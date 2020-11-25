@@ -3,7 +3,10 @@ import {FileUploaderBox} from '../common/FileUploaderBox';
 import {useServices} from '../hooks/useServices';
 import {useSnackbar} from '../hooks/useSnackbar';
 import {Box} from '../common/Box';
-import {Verification as VerificationResult} from 'verification-service-common/models';
+import {
+  Attestation,
+  Verification as VerificationResult
+} from 'verification-service-common/models';
 import {Result} from '@restless/sanitizers';
 import {RenderCertificateResult} from '../../../src/services/apiService';
 
@@ -49,11 +52,6 @@ export const Verification = () => {
       <Box className='verification-details'>
         {verification && <VerifiedDocument verification={verification}/>}
       </Box>
-      {verification?.isVerified && (
-        <Box className='verification-details'>
-          <RenderedAttestation verification={verification}/>
-        </Box>
-      )}
       {renderedHTML && verification?.isVerified && (
         <Box>
           <RenderedCertificate
@@ -90,6 +88,7 @@ const VerifiedDocument = ({
         {verification.fileName} is verified
       </p>
       <p>Creator: {verification.creator}</p>
+      <RenderedAttestation attestation={verification.attestation}/>
       <p>
         Timestamp:{' '}
         {new Date(verification.timestamp).toLocaleString('en-UK', {
@@ -129,9 +128,9 @@ const RenderedCertificate = ({
 };
 
 const renderedAccreditation = ({
-  Accreditation
+  Accreditations
 }: {
-  Accreditation: string | string[];
+  Accreditations: string | string[] | undefined;
 }) => {
   const accreditation = (credit: string) => (
     <p>
@@ -141,44 +140,51 @@ const renderedAccreditation = ({
         target='_blank'
         rel='noopener noreferrer'
       >
-          Accreditation
+        {credit}
       </a>
     </p>
   );
-  if (typeof Accreditation === 'string') {
-    return accreditation(Accreditation);
+  if (typeof Accreditations === 'string') {
+    return accreditation(Accreditations);
+  }
+  if (Accreditations instanceof Array) {
+    return <>{Accreditations.map((credit) => accreditation(credit))}</>;
+  }
+  return <></>;
+};
+
+const mailLink = (Email: string) => `mailto: ${Email}`;
+
+const RenderedAttestation = ({
+  attestation
+}: {
+  attestation: Attestation | null;
+}) => {
+  if (!attestation) {
+    return <p></p>;
   }
   return (
     <>
-      {Accreditation.map((credit) => accreditation(credit))}
-    </>
-  );
-};
-
-const RenderedAttestation = ({
-  verification
-}: {
-  verification: VerificationResult;
-}) => {
-  if (verification.isVerified && verification?.attestation) {
-    const {attestation} = verification;
-    return (
-      <>
-        <p>Company: {attestation.CompanyName}</p>
-        <p>Email: {attestation.Email}</p>
-        <p>
-          <a
-            className='bcdb-link'
-            href={attestation.WWW as string}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Company website
-          </a>
-        </p>
-        {renderedAccreditation({
-          Accreditation: attestation.Accreditation as string | string[]
-        })}
+      <p>{attestation.CompanyName}</p>
+      <p>
+        <a className='bcdb-link' href={mailLink(attestation.Email)}>
+          {attestation.Email}
+        </a>
+      </p>
+      <p>
+        <a
+          className='bcdb-link'
+          href={attestation.WWW}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {attestation.WWW}
+        </a>
+      </p>
+      {renderedAccreditation({
+        Accreditations: attestation.Accreditations
+      })}
+      <p>
         <a
           className='bcdb-link'
           href={attestation.link as string}
@@ -187,8 +193,7 @@ const RenderedAttestation = ({
         >
           See self attestation
         </a>
-      </>
-    );
-  }
-  return <p></p>;
+      </p>
+    </>
+  );
 };
