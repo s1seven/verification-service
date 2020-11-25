@@ -6,8 +6,16 @@ import {makeExampleTransaction} from '../mocks';
 describe('VerificationService', () => {
   const setup = function () {
     const mockBigchain = {
-      findAsset: sinon.stub().resolves([{id: '123', data: {notarization: 'SBS Notarized:0x123'}}]),
-      getTransaction: sinon.stub().callsFake((id) => makeExampleTransaction(id, 'PubKey', ['PubKey'], '10')),
+      findAsset: sinon
+        .stub()
+        .resolves([
+          {id: '123', data: {notarization: 'SBS Notarized:0x123'}}
+        ]),
+      getTransaction: sinon
+        .stub()
+        .callsFake((id) =>
+          makeExampleTransaction(id, 'PubKey', ['PubKey'], '10')
+        ),
       transactionLink: sinon.stub().returns('http://bigchain.com')
     };
     const verificationService = new VerificationService(mockBigchain as any);
@@ -19,6 +27,7 @@ describe('VerificationService', () => {
 
     expect(await verificationService.validate('0x123')).to.deep.equal({
       isVerified: true,
+      attestation: null,
       creator: 'PubKey',
       timestamp: '10',
       id: '123',
