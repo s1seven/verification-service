@@ -1,8 +1,8 @@
 import {
   BigchainDbCreateTransaction,
-  BigchainDbWrapper,
+  BigchainDbWrapper
 } from './bigchainDbWrapper';
-import { Verification } from 'verification-service-common/models';
+import {Verification} from 'verification-service-common/models';
 
 export class VerificationService {
   constructor(private bigchainDbWrapper: BigchainDbWrapper) {}
@@ -15,7 +15,7 @@ export class VerificationService {
       !assets.length ||
       (assets[0].data as any).notarization !== `SBS Notarized:${hash}`
     ) {
-      return { isVerified: false };
+      return {isVerified: false};
     }
     const transaction = await this.bigchainDbWrapper.getTransaction(
       assets[0].id
@@ -27,7 +27,7 @@ export class VerificationService {
 
     let attestation: Record<string, unknown> | null = null;
     if (attestations.length) {
-      const { id: attestationId } =
+      const {id: attestationId} =
         attestations.find(
           (attest: any) =>
             attest.data && attest.data.publicKey === creatorPublicKey
@@ -39,7 +39,7 @@ export class VerificationService {
 
         attestation = {
           ...((tx.asset.data as Record<string, unknown>) || {}),
-          link: this.bigchainDbWrapper.transactionLink(tx),
+          link: this.bigchainDbWrapper.transactionLink(tx)
         };
       }
     }
@@ -50,7 +50,7 @@ export class VerificationService {
       creator: creatorPublicKey,
       timestamp: transaction.metadata.timestamp,
       id: transaction.id,
-      link: this.bigchainDbWrapper.transactionLink(transaction),
+      link: this.bigchainDbWrapper.transactionLink(transaction)
     };
   }
 }
