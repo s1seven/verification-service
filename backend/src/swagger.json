@@ -91,7 +91,7 @@
           "publicKey": {
             "type": "string"
           },
-          "Accreditation": {
+          "Accreditations": {
             "oneOf": [
               { "type": "string" },
               {
