@@ -67,7 +67,8 @@ describe('Verification Component', () => {
     const certificateResultParagraphs = wrapper.find('.verification-details').find('p');
     expect(certificateResultParagraphs.at(0).text()).toBe('✅ certificate.json is verified');
     expect(certificateResultParagraphs.at(1).text()).toBe('Creator: ABC12');
-    expect(certificateResultParagraphs.at(2).text()).toBe('Timestamp: 3/5/2020, 1:11:38 PM');
+    expect(certificateResultParagraphs.at(2).text()).toBe('');
+    expect(certificateResultParagraphs.at(3).text()).toBe('Timestamp: 3/5/2020, 1:11:38 PM');
   });
 
   it('renders html if certificate is valid', async () => {
