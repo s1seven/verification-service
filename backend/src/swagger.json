@@ -88,6 +88,9 @@
           "WWW": {
             "type": "string"
           },
+          "publicKey": {
+            "type": "string"
+          },
           "Accreditation": {
             "oneOf": [
               { "type": "string" },
@@ -100,7 +103,7 @@
             ]
           }
         },
-        "required": ["CompanyName", "Street", "ZipCode", "City", "Email", "WWW"]
+        "required": ["CompanyName", "Street", "ZipCode", "City", "Email", "WWW", "publicKey"]
       }
     }
   },
