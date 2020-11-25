@@ -1,9 +1,9 @@
 {
-  "openapi" : "3.0.0",
-  "info" : {
-    "version" : "1.0.1",
-    "title" : "Steel But Smart Verification Service",
-    "description" : "This is SBS Verification API. It provides a useful way of verifying files on BigchainDB blockchain."
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.1",
+    "title": "S1Seven Verification Service",
+    "description": "This is S1Seven Verification API. It provides a useful way of verifying files on BigchainDB blockchain."
   },
   "paths" : {
     "/verify/{fileHash}" : {
