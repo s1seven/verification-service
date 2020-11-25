@@ -19,6 +19,7 @@ export const Verification = () => {
   } = useServices();
   const [verification, setVerification] = useState<FileVerification>();
   const [renderedHTML, setRenderedHTML] = useState<RenderCertificateResult>();
+
   const {show} = useSnackbar();
 
   const onUpload = async (file: File) => {
@@ -48,7 +49,12 @@ export const Verification = () => {
       <Box className='verification-details'>
         {verification && <VerifiedDocument verification={verification}/>}
       </Box>
-      {renderedHTML && (
+      {verification?.isVerified && (
+        <Box className='verification-details'>
+          <RenderedAttestation verification={verification}/>
+        </Box>
+      )}
+      {renderedHTML && verification?.isVerified && (
         <Box>
           <RenderedCertificate
             renderedHTML={renderedHTML}
@@ -119,5 +125,70 @@ const RenderedCertificate = ({
       />
     );
   }
-  return (<p></p>);
+  return <p></p>;
+};
+
+const renderedAccreditation = ({
+  Accreditation
+}: {
+  Accreditation: string | string[];
+}) => {
+  const accreditation = (credit: string) => (
+    <p>
+      <a
+        className='bcdb-link'
+        href={credit}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+          Accreditation
+      </a>
+    </p>
+  );
+  if (typeof Accreditation === 'string') {
+    return accreditation(Accreditation);
+  }
+  return (
+    <>
+      {Accreditation.map((credit) => accreditation(credit))}
+    </>
+  );
+};
+
+const RenderedAttestation = ({
+  verification
+}: {
+  verification: VerificationResult;
+}) => {
+  if (verification.isVerified && verification?.attestation) {
+    const {attestation} = verification;
+    return (
+      <>
+        <p>Company: {attestation.CompanyName}</p>
+        <p>Email: {attestation.Email}</p>
+        <p>
+          <a
+            className='bcdb-link'
+            href={attestation.WWW as string}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Company website
+          </a>
+        </p>
+        {renderedAccreditation({
+          Accreditation: attestation.Accreditation as string | string[]
+        })}
+        <a
+          className='bcdb-link'
+          href={attestation.link as string}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          See self attestation
+        </a>
+      </>
+    );
+  }
+  return <p></p>;
 };
