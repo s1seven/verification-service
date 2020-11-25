@@ -1,41 +1,46 @@
 {
-  "openapi" : "3.0.0",
-  "info" : {
-    "version" : "1.0.1",
-    "title" : "Steel But Smart Verification Service",
-    "description" : "This is SBS Verification API. It provides a useful way of verifying files on BigchainDB blockchain."
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.1",
+    "title": "Steel But Smart Verification Service",
+    "description": "This is SBS Verification API. It provides a useful way of verifying files on BigchainDB blockchain."
   },
-  "paths" : {
-    "/verify/{fileHash}" : {
-      "get" : {
-        "summary" : "Verify whether SHA256 hash of the file has been notarized on BigchainDB",
-        "tags" : [ "verify" ],
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "fileHash",
-          "required" : true,
-          "description" : "SHA256 hash of the file to be verified.",
-          "schema" : {
-            "type" : "string"
+  "paths": {
+    "/verify/{fileHash}": {
+      "get": {
+        "summary": "Verify whether SHA256 hash of the file has been notarized on BigchainDB",
+        "tags": ["verify"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileHash",
+            "required": true,
+            "description": "SHA256 hash of the file to be verified.",
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
-        "operationId" : "verify",
-        "responses" : {
-          "200" : {
-            "description" : "",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "object",
-                  "properties" : {
-                    "isVerified" : {
-                      "type" : "boolean",
+        ],
+        "operationId": "verify",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "isVerified": {
+                      "type": "boolean",
                       "required": true,
-                      "description" : "Is true if file has been verified"
+                      "description": "Is true if file has been verified"
                     },
-                    "creator" : {
-                      "type" : "string",
-                      "description" : "Notarization transaction's sender address"
+                    "attestation": {
+                      "$ref": "#/components/schemas/Attestation"
+                    },
+                    "creator": {
+                      "type": "string",
+                      "description": "Notarization transaction's sender address"
                     },
                     "timestamp": {
                       "type": "string",
@@ -59,14 +64,61 @@
       }
     }
   },
-  "externalDocs" : {
-    "description" : "Notarization API Docs",
-    "url" : "https://demo.verification.en10204.io/api/docs"
+  "components": {
+    "schemas": {
+      "Attestation": {
+        "type": "object",
+        "properties": {
+          "CompanyName": {
+            "type": "string"
+          },
+          "Street": {
+            "type": "string"
+          },
+          "ZipCode": {
+            "type": "string"
+          },
+          "City": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "WWW": {
+            "type": "string"
+          },
+          "publicKey": {
+            "type": "string"
+          },
+          "Accreditations": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        },
+        "required": ["CompanyName", "Street", "ZipCode", "City", "Email", "WWW", "publicKey"]
+      }
+    }
   },
-  "tags" : [ {
-    "name" : "verify"
-  } ],
-  "servers" : [ {
-    "url" : "https://demo.verification.en10204.io/api"
-  } ]
+  "externalDocs": {
+    "description": "Verification API Docs",
+    "url": "https://demo.verification.en10204.io/api/docs"
+  },
+  "tags": [
+    {
+      "name": "verify"
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://demo.verification.en10204.io/api"
+    }
+  ]
 }

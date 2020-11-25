@@ -2,7 +2,7 @@ import {
   BigchainDbCreateTransaction,
   BigchainDbWrapper
 } from './bigchainDbWrapper';
-import {Verification} from 'verification-service-common/models';
+import {Attestation, Verification} from 'verification-service-common/models';
 
 export class VerificationService {
   constructor(private bigchainDbWrapper: BigchainDbWrapper) {}
@@ -25,7 +25,7 @@ export class VerificationService {
       creatorPublicKey
     );
 
-    let attestation: Record<string, unknown> | null = null;
+    let attestation: Attestation | null = null;
     if (attestations.length) {
       const {id: attestationId} =
         attestations.find(
@@ -38,7 +38,7 @@ export class VerificationService {
         )) as BigchainDbCreateTransaction<unknown>;
 
         attestation = {
-          ...((tx.asset.data as Record<string, unknown>) || {}),
+          ...((tx.asset.data as Attestation) || {}),
           link: this.bigchainDbWrapper.transactionLink(tx)
         };
       }
