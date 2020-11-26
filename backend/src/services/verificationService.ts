@@ -29,13 +29,15 @@ export class VerificationService {
     return attestation;
   }
 
-  async validate(hash: string): Promise<Verification> {
+  async validate(fileHash: string): Promise<Verification> {
     // Removed prefix to have more accurate results `SBS Notarized:${hash}`
+    const PREFIX = `SBS Notarized:`;
+    const hash = fileHash.toLowerCase();
     const assets = await this.bigchainDbWrapper.findAsset(
       hash
     );
     const asset = assets.length ? assets.find(
-      (asset) => (asset.data as any).notarization === `SBS Notarized:${hash}`
+      (asset) => (asset.data as any).notarization === `${PREFIX}${hash}`
     ) : null;
 
     if (!asset) {
