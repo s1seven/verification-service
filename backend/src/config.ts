@@ -1,7 +1,8 @@
 import {DeepReadonlyObject} from './utils/deepReadOnly';
 
 export const config = Object.freeze({
-  port: Number(process.env.PORT) || 3000,
+  port: Number(process.env.PORT) || 3001,
+  notarizationPrefix:  process.env.PREFIX || 'SBS Notarized:',
   bigchaindbUrl: process.env.BIGCHAINDB_URL || 'https://test.ipdb.io/api/v1/'
 });
 

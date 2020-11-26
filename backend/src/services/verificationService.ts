@@ -5,7 +5,10 @@ import {
 import {Attestation, Verification} from 'verification-service-common/models';
 
 export class VerificationService {
-  constructor(private bigchainDbWrapper: BigchainDbWrapper) {}
+  constructor(
+    private bigchainDbWrapper: BigchainDbWrapper,
+    private notarizationPrefix: string = 'SBS Notarized:'
+  ) {}
 
   async getAttestation(publicKey: string): Promise<Attestation | null> {
     const attestations = await this.bigchainDbWrapper.findAsset(publicKey);
@@ -30,14 +33,14 @@ export class VerificationService {
   }
 
   async validate(fileHash: string): Promise<Verification> {
-    // Removed prefix to have more accurate results `SBS Notarized:${hash}`
-    const PREFIX = `SBS Notarized:`;
+    //? Remove PREFIX in findAsset to have more accurate results
+    const PREFIX = this.notarizationPrefix;
     const hash = fileHash.toLowerCase();
     const assets = await this.bigchainDbWrapper.findAsset(
-      hash
+      `${PREFIX}${hash}`
     );
     const asset = assets.length ? assets.find(
-      (asset) => (asset.data as any).notarization === `${PREFIX}${hash}`
+      (asset) => asset.data && (asset.data as any).notarization === `${PREFIX}${hash}`
     ) : null;
 
     if (!asset) {
