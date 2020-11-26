@@ -33,7 +33,7 @@ describe('VerificationService', () => {
       id: '123',
       link: 'http://bigchain.com'
     });
-    expect(mockBigchain.findAsset).to.be.calledWith('SBS Notarized:0x123');
+    expect(mockBigchain.findAsset).to.be.calledWith('0x123');
   });
 
   it('returns that file is not verified when it was not found', async () => {

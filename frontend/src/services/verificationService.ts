@@ -9,7 +9,8 @@ export class VerificationService {
   }
 
   private async calculateHashOfFile(file: File) {
-    const hash = await crypto.subtle.digest('SHA-256', await this.readFile(file));
+    const buffer = await this.readFile(file);
+    const hash = await crypto.subtle.digest('SHA-256', buffer);
     return Array
       .from(new Uint8Array(hash))
       .map((val) => val.toString(16).padStart(2, '0'))

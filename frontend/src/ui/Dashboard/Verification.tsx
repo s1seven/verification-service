@@ -27,6 +27,7 @@ export const Verification = () => {
 
   const onUpload = async (file: File) => {
     try {
+      setRenderedHTML(undefined);
       const result = await verificationService.verify(file);
       setVerification({
         ...result,
@@ -145,10 +146,10 @@ const renderedAccreditation = ({
     </p>
   );
   if (typeof Accreditations === 'string') {
-    return accreditation(Accreditations);
+    return <><p>Accreditations : </p>{accreditation(Accreditations)}</>;
   }
   if (Accreditations instanceof Array) {
-    return <>{Accreditations.map((credit) => accreditation(credit))}</>;
+    return <><p>Accreditations : </p>{Accreditations.map((credit) => accreditation(credit))}</>;
   }
   return <></>;
 };
