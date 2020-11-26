@@ -33,12 +33,9 @@ export class VerificationService {
   }
 
   async validate(fileHash: string): Promise<Verification> {
-    //? Remove PREFIX in findAsset to have more accurate results
     const PREFIX = this.notarizationPrefix;
     const hash = fileHash.toLowerCase();
-    const assets = await this.bigchainDbWrapper.findAsset(
-      `${PREFIX}${hash}`
-    );
+    const assets = await this.bigchainDbWrapper.findAsset(hash);
     const asset = assets.length ? assets.find(
       (asset) => asset.data && (asset.data as any).notarization === `${PREFIX}${hash}`
     ) : null;
