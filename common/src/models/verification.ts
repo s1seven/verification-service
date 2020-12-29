@@ -19,4 +19,5 @@ export interface Attestation {
   publicKey: string;
   Accreditations?: string | string[];
   link?: string;
+  assetId?: string;
 }

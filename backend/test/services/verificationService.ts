@@ -9,8 +9,11 @@ describe('VerificationService', () => {
       findAsset: sinon
         .stub()
         .resolves([
-          {id: '123', data: {notarization: 'SBS Notarized:0x123'}}
+          {id: '123', data: {jsonHash: '0x123'}}
         ]),
+      findMetadata: sinon
+        .stub()
+        .resolves([]),
       getTransaction: sinon
         .stub()
         .callsFake((id) =>

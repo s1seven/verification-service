@@ -1,31 +1,30 @@
-import {
-  BigchainDbCreateTransaction,
-  BigchainDbWrapper
-} from './bigchainDbWrapper';
+import {BigchainDbWrapper} from './bigchainDbWrapper';
 import {Attestation, Verification} from 'verification-service-common/models';
-
 export class VerificationService {
-  constructor(
-    private bigchainDbWrapper: BigchainDbWrapper,
-    private notarizationPrefix: string = 'SBS Notarized:'
-  ) {}
+  constructor(private bigchainDbWrapper: BigchainDbWrapper) {}
 
   async getAttestation(publicKey: string): Promise<Attestation | null> {
-    const attestations = await this.bigchainDbWrapper.findAsset(publicKey);
+    const results = await this.bigchainDbWrapper.findMetadata(publicKey);
     let attestation: Attestation | null = null;
-    if (attestations.length) {
-      const {id: attestationId} =
-        attestations.find(
-          (attest: any) => attest.data && attest.data.publicKey === publicKey
+    if (results.length) {
+      const {id} =
+        results.find(
+          (result) =>
+            Object.prototype.hasOwnProperty.call(
+              result.metadata,
+              'publicKey'
+            ) && result.metadata.publicKey === publicKey
         ) || {};
-      if (attestationId) {
-        const tx = (await this.bigchainDbWrapper.getTransaction(
-          attestationId
-        )) as BigchainDbCreateTransaction<unknown>;
+      if (id) {
+        const tx = await this.bigchainDbWrapper.getTransaction(id);
+        const assetId = this.bigchainDbWrapper.getAssetId(tx);
+        // TODO: list transaction history ?
+        // const transactions = await this.bigchainDbWrapper.listTransactions(assetId);
 
         attestation = {
-          ...((tx.asset.data as Attestation) || {}),
-          link: this.bigchainDbWrapper.transactionLink(tx)
+          ...(((tx.metadata as unknown) as Attestation) || {}),
+          link: this.bigchainDbWrapper.transactionLink(tx),
+          assetId
         };
       }
     }
@@ -33,12 +32,15 @@ export class VerificationService {
   }
 
   async validate(fileHash: string): Promise<Verification> {
-    const PREFIX = this.notarizationPrefix;
     const hash = fileHash.toLowerCase();
     const assets = await this.bigchainDbWrapper.findAsset(hash);
-    const asset = assets.length ? assets.find(
-      (asset) => asset.data && (asset.data as any).notarization === `${PREFIX}${hash}`
-    ) : null;
+    const asset = assets.length
+      ? assets.find(
+        (asset) =>
+          asset.data &&
+            (asset.data.jsonHash === hash || asset.data.pdfHash === hash)
+      )
+      : null;
 
     if (!asset) {
       return {isVerified: false};

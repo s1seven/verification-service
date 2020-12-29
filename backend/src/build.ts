@@ -8,7 +8,6 @@ export const build = (config: Config) => {
   return {
     verificationService: new VerificationService(
       new BigchainDbWrapper(config.bigchaindbUrl),
-      config.notarizationPrefix
     ),
   };
 };
