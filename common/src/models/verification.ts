@@ -18,6 +18,6 @@ export interface Attestation {
   WWW: string;
   publicKey: string;
   Accreditations?: string | string[];
-  link?: string;
-  assetId?: string;
+  links: string[];
+  assetId: string;
 }

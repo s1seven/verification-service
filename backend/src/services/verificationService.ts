@@ -1,4 +1,4 @@
-import {BigchainDbWrapper} from './bigchainDbWrapper';
+import {BigchainDbTransaction, BigchainDbWrapper} from './bigchainDbWrapper';
 import {Attestation, Verification} from 'verification-service-common/models';
 export class VerificationService {
   constructor(private bigchainDbWrapper: BigchainDbWrapper) {}
@@ -18,13 +18,33 @@ export class VerificationService {
       if (id) {
         const tx = await this.bigchainDbWrapper.getTransaction(id);
         const assetId = this.bigchainDbWrapper.getAssetId(tx);
-        // TODO: list transaction history ?
-        // const transactions = await this.bigchainDbWrapper.listTransactions(assetId);
+        const transactions = await this.bigchainDbWrapper.listTransactions(
+          assetId
+        );
+        const links = transactions.map((transaction) =>
+          this.bigchainDbWrapper.transactionLink(transaction)
+        );
+
+        const getLatest = (transactions: BigchainDbTransaction<unknown>[]) =>
+          transactions
+            .filter((transaction) =>
+              Object.prototype.hasOwnProperty.call(
+                transaction.metadata,
+                'updatedAt'
+              )
+            )
+            .sort(
+              (txA, txB) =>
+                (txB.metadata as any).updatedAt - (txA.metadata as any).updatedAt
+            )[0];
+
+        const latestTransaction =
+          transactions.length === 1 ? transactions[0] : getLatest(transactions);
 
         attestation = {
-          ...(((tx.metadata as unknown) as Attestation) || {}),
-          link: this.bigchainDbWrapper.transactionLink(tx),
-          assetId
+          ...((latestTransaction.metadata as unknown) as Attestation),
+          assetId,
+          links
         };
       }
     }

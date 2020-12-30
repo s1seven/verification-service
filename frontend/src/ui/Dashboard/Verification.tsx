@@ -146,10 +146,50 @@ const renderedAccreditation = ({
     </p>
   );
   if (typeof Accreditations === 'string') {
-    return <><p>Accreditations : </p>{accreditation(Accreditations)}</>;
+    return (
+      <>
+        <p>Accreditations : </p>
+        {accreditation(Accreditations)}
+      </>
+    );
   }
   if (Accreditations instanceof Array) {
-    return <><p>Accreditations : </p>{Accreditations.map((credit) => accreditation(credit))}</>;
+    return (
+      <>
+        <p>Accreditations : </p>
+        {Accreditations.map((credit) => accreditation(credit))}
+      </>
+    );
+  }
+  return <></>;
+};
+
+const renderedAttestationLinks = ({
+  links
+}: {
+  links: string[] | undefined;
+}) => {
+  const getTransactionIdFromLink = (link: string) => link.split('/').pop();
+
+  const attestationLink = (link: string) => (
+    <p>
+      <a
+        className='bcdb-link'
+        href={link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {getTransactionIdFromLink(link)}
+      </a>
+    </p>
+  );
+  if (links instanceof Array) {
+    return (
+      <>
+        <p>See self attestations : </p>
+        {links.map((link) => attestationLink(link))}
+      </>
+    );
   }
   return <></>;
 };
@@ -185,16 +225,9 @@ const RenderedAttestation = ({
       {renderedAccreditation({
         Accreditations: attestation.Accreditations
       })}
-      <p>
-        <a
-          className='bcdb-link'
-          href={attestation.link as string}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          See self attestation
-        </a>
-      </p>
+      {renderedAttestationLinks({
+        links: attestation.links
+      })}
     </>
   );
 };
