@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {mount, ReactWrapper} from 'enzyme';
 import {FileUploader} from '../../../ui/common/FileUploader';

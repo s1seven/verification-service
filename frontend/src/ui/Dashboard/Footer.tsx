@@ -3,7 +3,7 @@ import Logo1x from '../../assets/s1seven@1x.png';
 import Logo2x from '../../assets/s1seven@2x.png';
 import {useServices} from '../hooks/useServices';
 
-export const Footer = () => {
+export const Footer = (): JSX.Element  => {
   const {bigchainService} = useServices();
 
   return (

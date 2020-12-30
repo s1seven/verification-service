@@ -6,7 +6,21 @@ import {BigchainService} from './bigchainService';
 import {validateCertificateFile} from './validationService';
 import {RenderService} from './renderService';
 
-export const setup = () => {
+export const setup = (): {
+  verificationService: VerificationService;
+  bigchainService: BigchainService;
+  renderService: RenderService;
+  validateCertificateFile: (
+  file: File
+  ) => Promise<
+  | {
+    ok: string | Record<string, any>;
+  }
+  | {
+    error: any;
+  }
+  >;
+} => {
   const apiService = new ApiService(config.apiUrl);
   return {
     verificationService: new VerificationService(apiService),
@@ -16,4 +30,6 @@ export const setup = () => {
   };
 };
 
-export const ServiceContext = createContext<ReturnType<typeof setup>>({} as any);
+export const ServiceContext = createContext<ReturnType<typeof setup>>(
+  {} as any
+);

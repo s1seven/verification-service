@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {FileUploaderBox} from '../common/FileUploaderBox';
 import {useServices} from '../hooks/useServices';
@@ -14,7 +15,7 @@ type FileVerification = VerificationResult & {
   fileName: string;
 };
 
-export const Verification = () => {
+export const Verification = (): JSX.Element  => {
   const {
     verificationService,
     renderService,
@@ -69,7 +70,7 @@ const VerifiedDocument = ({
   verification
 }: {
   verification: FileVerification;
-}) => {
+}): JSX.Element  => {
   if (!verification.isVerified) {
     return (
       <p>
@@ -114,7 +115,7 @@ const RenderedCertificate = ({
 }: {
   renderedHTML: RenderCertificateResult;
   verification: FileVerification | undefined;
-}) => {
+}): JSX.Element  => {
   if (verification?.isVerified) {
     return (
       <iframe
@@ -132,7 +133,7 @@ const renderedAccreditation = ({
   Accreditations
 }: {
   Accreditations: string | string[] | undefined;
-}) => {
+}): JSX.Element  => {
   const accreditation = (credit: string) => (
     <p>
       <a
@@ -168,7 +169,7 @@ const renderedAttestationLinks = ({
   links
 }: {
   links: string[] | undefined;
-}) => {
+}): JSX.Element  => {
   const getTransactionIdFromLink = (link: string) => link.split('/').pop();
 
   const attestationLink = (link: string) => (
@@ -200,7 +201,7 @@ const RenderedAttestation = ({
   attestation
 }: {
   attestation: Attestation | null;
-}) => {
+}): JSX.Element  => {
   if (!attestation) {
     return <p></p>;
   }

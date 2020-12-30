@@ -11,7 +11,7 @@ describe('validateCertificateFile', () => {
     const certificateFile = file(certificateText);
     expect(await validateCertificateFile(certificateFile))
       .toStrictEqual(Result.ok(JSON.parse(certificateText)));
-  });
+  }, 7000);
 
   it('does not validate incorrect certificate', async () => {
     const validationResult = await validateCertificateFile(file('some file')) as { error: any};

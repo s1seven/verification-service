@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {Verification} from 'verification-service-common/models';
 import {asSanitizerFailures, formatSanitizerError} from 'verification-service-common/sanitizers';
 import {Result, SanitizerFailure} from '@restless/sanitizers';
-
-
 export class BadRequestError extends Error {
   public constructor(public sanitizerFailures: SanitizerFailure[]) {
     super(formatSanitizerError(sanitizerFailures));
@@ -18,6 +17,7 @@ const getError = (response: any) => {
   throw new Error(response.reason);
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never;
 
 const safeFetch = async (...args: ArgumentTypes<typeof fetch>) => {

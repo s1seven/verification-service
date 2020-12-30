@@ -27,8 +27,8 @@ describe('Integration Verification', () => {
       .post('/api/renderCertificate')
       .attach(field, file);
 
-
-    it('renders a valid certificate', async () => {
+    it('renders a valid certificate', async function () {
+      this.timeout(15000);
       const response = await uploadFile();
 
       expect(response.status).to.equal(200);

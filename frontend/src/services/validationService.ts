@@ -2,7 +2,14 @@ import {Result} from '@restless/sanitizers';
 import {validate} from '@s1seven/schema-tools-validate';
 import flatten from 'lodash.flatten';
 
-export const validateCertificateFile = async (file: File) => {
+export const validateCertificateFile = async (file: File):Promise<
+| {
+  ok: string | Record<string, any>;
+}
+| {
+  error: any;
+}
+> => {
   try {
     const certificateInput = await readFileAsString(file);
     return validateCertificateInput(JSON.parse(certificateInput), '');
