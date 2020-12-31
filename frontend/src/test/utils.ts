@@ -1,6 +1,6 @@
-export const flushAllPromises = () => new Promise((resolve) => setImmediate(resolve));
+export const flushAllPromises = (): Promise<unknown> => new Promise((resolve) => setImmediate(resolve));
 
-const sleep = (timeout = 150) => new Promise((resolve) => setTimeout(resolve, timeout));
+const sleep = (timeout = 150): Promise<unknown> => new Promise((resolve) => setTimeout(resolve, timeout));
 
 export const waitForExpect = async <T>(callback: () => Promise<T>, timeout = 500, interval = 50): Promise<T> => {
   const maxTries = Math.floor(timeout / interval);

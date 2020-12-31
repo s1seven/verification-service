@@ -5,7 +5,7 @@ import {SnackbarProvider} from './common/Snackbar/SnackbarProvider';
 
 const services = setup();
 
-export const App = () => (
+export const App = (): JSX.Element => (
   <ServiceContext.Provider value={services}>
     <SnackbarProvider>
       <Dashboard/>

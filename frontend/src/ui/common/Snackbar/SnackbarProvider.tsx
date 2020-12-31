@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {createContext, ReactNode, useState} from 'react';
 import {Snackbar} from './Snackbar';
 
@@ -6,7 +7,7 @@ export const SnackbarContext = createContext<{show: (message: string) => void}>(
 const SNACKBAR_TIMEOUT = 3000;
 let timerId: NodeJS.Timeout;
 
-export function SnackbarProvider({children}: {children: ReactNode}) {
+export function SnackbarProvider({children}: {children: ReactNode}): JSX.Element {
   const [content, setContent] = useState('');
   const [visible, setVisible] = useState(false);
 

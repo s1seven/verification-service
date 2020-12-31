@@ -8,7 +8,7 @@ export interface FileUploaderProps {
   onFileUploaded: (file: File) => void;
 }
 
-export const FileUploader = ({hintText, onFileUploaded = () => {}}: FileUploaderProps) => {
+export const FileUploader = ({hintText, onFileUploaded = () => {}}: FileUploaderProps): JSX.Element => {
   const fileInput = useRef<HTMLInputElement>(null);
 
   const [spinner, setSpinner] = useState(false);

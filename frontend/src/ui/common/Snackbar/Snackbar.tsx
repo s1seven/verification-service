@@ -7,7 +7,7 @@ interface SnackbarProps {
   className?: string;
 }
 
-export const Snackbar = ({content, className, visible}: SnackbarProps) => (
+export const Snackbar = ({content, className, visible}: SnackbarProps): JSX.Element => (
   <div className={cn('snackbar', !visible && 'snackbar-hidden', className)}>
     <p className='snackbar-content'>{content}</p>
   </div>

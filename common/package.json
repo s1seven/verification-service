@@ -13,10 +13,10 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^7.0.1",
-    "typescript": "^3.7.5"
+    "mocha": "^8.2.1",
+    "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@restless/sanitizers": "^0.2.3"
+    "@restless/sanitizers": "^0.2.5"
   }
 }

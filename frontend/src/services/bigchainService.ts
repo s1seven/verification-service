@@ -4,7 +4,7 @@ export class BigchainService {
     this.bigchainUrl = new URL(bigchainUrl);
   }
 
-  get hostname() {
+  get hostname(): string {
     return this.bigchainUrl.hostname;
   }
 }

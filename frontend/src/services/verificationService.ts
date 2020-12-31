@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {Verification} from 'verification-service-common/models';
 import {ApiService} from './apiService';
-
 export class VerificationService {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
-  async verify(file: File) {
+  async verify(file: File): Promise<Verification> {
     const hash = await this.calculateHashOfFile(file);
     return this.apiService.verify(hash);
   }
@@ -11,8 +12,7 @@ export class VerificationService {
   private async calculateHashOfFile(file: File) {
     const buffer = await this.readFile(file);
     const hash = await crypto.subtle.digest('SHA-256', buffer);
-    return Array
-      .from(new Uint8Array(hash))
+    return Array.from(new Uint8Array(hash))
       .map((val) => val.toString(16).padStart(2, '0'))
       .join('');
   }
