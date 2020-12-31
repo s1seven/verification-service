@@ -1417,54 +1417,54 @@
   resolved "https://registry.yarnpkg.com/@restless/sanitizers/-/sanitizers-0.2.5.tgz#96a5cfa3edb52abd8fa14e77798738f3a067dbec"
   integrity sha512-utsOFwv5owNnbj8HijF7uML/AURgUl5YvY4S2gpxQsrp2D1EP/4rQU/HSyYdIQaL89BoZ/5NHveRJrcFyuHo/w==
 
-"@s1seven/schema-tools-generate-html@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-generate-html/-/schema-tools-generate-html-0.0.15.tgz#120fde176853b841f91963c3946761c75f982fee"
-  integrity sha512-Zl6KAf4XpSsXO8KHvUQ25AB/hhwWU+OOe7jee10jLFf3Oac2u8ApcVSAPzG0VegBzHgx8jkmjAfWPO3GWmywpA==
+"@s1seven/schema-tools-generate-html@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-generate-html/-/schema-tools-generate-html-0.0.16.tgz#2e2bb65c29f6bf9fe5dba01719ac48301026e25d"
+  integrity sha512-WixNzRXPNL8oZAkFqM8KJa3VZQJZVS4QbF1TYmSmmQPWsDwbOhBQOKG8tFz/qM0qPpYAC55oLInQVJlJowe7Kg==
   dependencies:
-    "@s1seven/schema-tools-types" "^0.0.10"
-    "@s1seven/schema-tools-utils" "^0.0.12"
-    "@types/ajv" "^1.0.0"
+    "@s1seven/schema-tools-types" "^0.0.11"
+    "@s1seven/schema-tools-utils" "^0.0.13"
     "@types/lodash.get" "^4.4.6"
     "@types/lodash.merge" "^4.6.6"
-    "@types/mjml" "^4.0.4"
-    "@types/node" "14.0.27"
+    "@types/mjml" "^4.7.0"
+    "@types/node" "^14.14.16"
     handlebars "^4.7.6"
     lodash.get "^4.4.2"
     lodash.merge "^4.6.2"
-    mjml "^4.7.1"
+    mjml "^4.8.1"
 
-"@s1seven/schema-tools-types@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-types/-/schema-tools-types-0.0.10.tgz#6846d953c81dcc67b27682ba0bfb3ee8216b47f5"
-  integrity sha512-DHJKzJ1GUBtHo5EIuXZ2/O5G/2PLZ2bsz+1jcWwpxp4yAalbcL7/w4QfOeqciO7k1FP4G1W/zHJ3fPuQ75dEXg==
+"@s1seven/schema-tools-types@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-types/-/schema-tools-types-0.0.11.tgz#036a513d6752cca737faed3cabe7b04e06816de2"
+  integrity sha512-uYUBnL47uawS61EYexBerno5I3HWk1TFYu2SSGyD5L1ee8NVvcVNhuY0R4+AncLtxxdWxye44yDJqIXeBtPYHg==
   dependencies:
     "@types/json-schema" "^7.0.6"
 
-"@s1seven/schema-tools-utils@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-utils/-/schema-tools-utils-0.0.12.tgz#01955eeb9f8f4113f6f508dc75a83a47c141883c"
-  integrity sha512-VjdHxnK4hln6bemUOpO58SpZIHCbd5GMhpgJFbqf9OfCuBROlWy/IIyslw/jQnT+QPjLWQG7IyrLGyCic3C2+g==
+"@s1seven/schema-tools-utils@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-utils/-/schema-tools-utils-0.0.13.tgz#22a97cf60f6b522612b9e1dc43bcb6449b29ac23"
+  integrity sha512-Uw5RyFg+HjAx3ajh5RZmdKmaYvS0JL/EeTw2O6BlimoYiFxYq0KrpFP/HshBU0YRcr+5fkUYbyof4qmkHlXJ7w==
   dependencies:
     "@restless/sanitizers" "^0.2.5"
-    "@s1seven/schema-tools-types" "^0.0.10"
+    "@s1seven/schema-tools-types" "^0.0.11"
     "@types/ajv" "^1.0.0"
-    "@types/node" "14.0.27"
-    axios "^0.20.0"
+    "@types/node" "^14.14.16"
+    axios "^0.21.1"
     node-cache "^5.1.2"
     semver-lite "0.0.6"
 
-"@s1seven/schema-tools-validate@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-validate/-/schema-tools-validate-0.0.12.tgz#577122cecbaedeabc946badf2f3dfd3707939e94"
-  integrity sha512-Pl8LgIjx78xm15dMGfy5HcoE/FbbIV/AjTryiHbFFDu2PJ1+trXwt9YUfQdLUqgI7YSI72HLAQrRPozpdXtcIw==
+"@s1seven/schema-tools-validate@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@s1seven/schema-tools-validate/-/schema-tools-validate-0.0.13.tgz#783b58cc2e6efd3f6d6f7b7b3cd2125a45b09052"
+  integrity sha512-OxA4cqigEvVqBZI71/rrkuAUSgAdSP0OwdUqcqG+sTQKBXNFQMwuiGp33R0QOEp6eHi71Zi81Yqd/tJTjYkQWQ==
   dependencies:
-    "@s1seven/schema-tools-types" "^0.0.10"
-    "@s1seven/schema-tools-utils" "^0.0.12"
+    "@s1seven/schema-tools-types" "^0.0.11"
+    "@s1seven/schema-tools-utils" "^0.0.13"
     "@types/lodash.flatten" "^4.4.6"
     "@types/lodash.groupby" "^4.6.6"
-    "@types/node" "14.0.27"
-    ajv "^6.12.6"
+    "@types/node" "^14.14.16"
+    ajv "^7.0.2"
+    ajv-formats "^1.5.1"
     lodash.flatten "^4.4.0"
     lodash.groupby "^4.6.0"
 
@@ -1846,7 +1846,7 @@
   resolved "https://registry.yarnpkg.com/@types/mjml-core/-/mjml-core-4.7.0.tgz#8fc4510ac7927795be1218042222f3dd98cee433"
   integrity sha512-sjdnVUQCZMRCXNuIve6OmB/pyoCV0wPbc5UV+VDNE/qTrM5ObJiOGpSVjwh2Kv7AEvPMP3hBh+xB6ERdN/ZPvg==
 
-"@types/mjml@^4.0.4":
+"@types/mjml@^4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@types/mjml/-/mjml-4.7.0.tgz#ea31b58008f54119efda9e673af674757d35981b"
   integrity sha512-aWWu8Lxq2SexXGs+lBPRUpN3kFf0sDRo3Y4jz7BQ15cQvMfyZOadgFJsNlHmDqI6D2Qjx0PIK+1f9IMXgq9vTA==
@@ -1869,11 +1869,6 @@
   version "14.14.16"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.16.tgz#3cc351f8d48101deadfed4c9e4f116048d437b4b"
   integrity sha512-naXYePhweTi+BMv11TgioE2/FXU4fSl29HAH1ffxVciNsH3rYXjNP2yM8wqmSm7jS20gM8TIklKiTen+1iVncw==
-
-"@types/node@14.0.27":
-  version "14.0.27"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
-  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
 
 "@types/node@^13.7.0":
   version "13.13.38"
@@ -2366,6 +2361,13 @@ ajv-errors@^1.0.0:
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
   integrity sha512-DCRfO/4nQ+89p/RK43i8Ezd41EqdGIU4ld7nGF8OQ14oc/we5rEntLCUa7+jrn3nn83BosfwZA0wb4pon2o8iQ==
 
+ajv-formats@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/ajv-formats/-/ajv-formats-1.5.1.tgz#0f301b1b3846182f224cc563fc0a032daafb7dab"
+  integrity sha512-s1RBVF4HZd2UjGkb6t6uWoXjf6o7j7dXPQIL7vprcIT/67bTD6+5ocsU0UKShS2qWxueGDWuGfKHfOxHWrlTQg==
+  dependencies:
+    ajv "^7.0.0"
+
 ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
@@ -2376,7 +2378,7 @@ ajv-keywords@^3.1.0:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==
 
-ajv@*:
+ajv@*, ajv@^7.0.0, ajv@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-7.0.2.tgz#04ccc89a93449c64382fe0846d45a7135d986dbc"
   integrity sha512-qIaxO9RXjaXyO21tJr0EvwPcZa49m64GcXCU8ZrLjCAlFyMuOcPpI560So4A11M1WsKslJYIXn6jSyG5P0xIeg==
@@ -2396,7 +2398,7 @@ ajv@^5.2.3, ajv@^5.3.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.6, ajv@^6.9.1:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.9.1:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -2754,13 +2756,6 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
-
-axios@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
-  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
-  dependencies:
-    follow-redirects "^1.10.0"
 
 axios@^0.21.1:
   version "0.21.1"
@@ -9272,7 +9267,7 @@ mjml-wrapper@4.8.1:
     mjml-core "4.8.1"
     mjml-section "4.8.1"
 
-mjml@^4.7.1:
+mjml@^4.8.1:
   version "4.8.1"
   resolved "https://registry.yarnpkg.com/mjml/-/mjml-4.8.1.tgz#32b65a98c4bab7a5a1f51b784fae92c768b35b5b"
   integrity sha512-jdKABiLBA1IJ0qTA5QVVsi/NN5GFtdvC1lxwdxrYV6J7dcJW7Z07j3r/GmJyOc2cznCFpJFKzfYV4Z6OZS4iyw==

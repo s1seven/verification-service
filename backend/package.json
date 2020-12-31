@@ -19,7 +19,7 @@
   "dependencies": {
     "@restless/restless": "^0.4.2",
     "@restless/sanitizers": "^0.2.5",
-    "@s1seven/schema-tools-generate-html": "^0.0.15",
+    "@s1seven/schema-tools-generate-html": "^0.0.16",
     "bigchaindb-driver": "^4.1.2",
     "express": "^4.17.1",
     "full-icu": "^1.3.1",
